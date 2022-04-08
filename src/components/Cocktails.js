@@ -1,19 +1,17 @@
 import React from 'react'
+import CocktailCard from './CocktailCard'
 
 function Cocktails({cocktails}){
     
     function mapCocktails(){
         return cocktails.map( cocktail => {
-            return <li key={cocktail.idDrink}>{cocktail.strDrink}</li>
+            return <CocktailCard key={cocktail.idDrink} cocktail={cocktail}/>
         })
     }
 
     return (
-        <div className='Cocktails-Container'>
-            <h3>This is where the main cocktails list will go</h3>
-            <ul>
-                {mapCocktails()}
-            </ul>
+        <div className='cocktails-container'>
+            {mapCocktails()}
         </div>
     )
 }
