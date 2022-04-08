@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import Cocktails from './components/Cocktails'
+import SignUp from './components/SignUp'
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
   
   return (
     <div className="App">
+      <SignUp /> 
       <Cocktails cocktails={cocktails}/>
     </div>
   );
