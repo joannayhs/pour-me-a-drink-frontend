@@ -5,7 +5,8 @@ function NavBar(){
 
     return (
         <div className="navbar">
-            <Link to="/signup"/>
+            <Link to="/signup">Sign Up</Link>
+            <Link to="/login">Login</Link>
         </div>
     )
 }
