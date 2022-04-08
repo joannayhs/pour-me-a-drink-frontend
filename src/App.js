@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from 'react'
+import {Route, Switch} from 'react-router-dom'
 import Cocktails from './components/Cocktails'
 import SignUp from './components/SignUp'
-
+import NavBar from './components/NavBar'
 
 function App() {
   const [cocktails, setCocktails] = useState([])
@@ -17,7 +18,15 @@ function App() {
   
   return (
     <div className="App">
-      <SignUp /> 
+      <Switch>
+        <Route path='/'>
+          <NavBar />
+        </Route>
+        <Route exact path="/SignUp">
+          <SignUp />
+        </Route>
+      </Switch>
+ 
       <Cocktails cocktails={cocktails}/>
     </div>
   );
