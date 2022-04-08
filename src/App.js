@@ -4,6 +4,7 @@ import Cocktails from './components/Cocktails'
 import SignUp from './components/SignUp'
 import NavBar from './components/NavBar'
 import Login from './components/Login'
+import SearchBar from './components/SearchBar'
 
 function App() {
   const [cocktails, setCocktails] = useState([])
@@ -28,6 +29,7 @@ function App() {
           <Login/>
         </Route>
         <Route path='/'>
+          <SearchBar />
           <Cocktails cocktails={cocktails} />
         </Route>
       </Switch>
