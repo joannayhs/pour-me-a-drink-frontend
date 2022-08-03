@@ -11,3 +11,13 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.cocktail-card {
+  position: static;
+  display: inline-block;
+  margin: 50px;
+  padding: 20px;
+  border: 1px solid black;
+  width: 100px;
+  height: 200px;
+}

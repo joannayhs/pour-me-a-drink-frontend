@@ -15,6 +15,7 @@ function App() {
     .then( r => r.json())
     .then( cocktails => {
       setCocktails(cocktails.drinks)
+      console.log(cocktails.drinks)
     })
   }, [] )
   
