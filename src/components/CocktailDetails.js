@@ -1,8 +1,14 @@
 import React from 'react'
+import {useParams} from 'react-router-dom'
 
-export default function CocktailDetails({cocktail}){
+export default function CocktailDetails({cocktails}){
+const params = useParams()
+console.log(params)
+
+const cocktail = cocktails.find( cocktail => cocktail.idDrink === params.cocktailId)
+console.log(cocktail)
     return(
-        <div>
+        <div className="cocktail-details">
             <p>{cocktail.strAlcoholic}</p>
             <img src={cocktail.strDrinkThumb}/>
             <p>{cocktail.strGlass}</p>
