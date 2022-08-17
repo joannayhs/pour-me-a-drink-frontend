@@ -26,6 +26,7 @@ function App() {
       <NavBar />
       <Switch>
         <Route path="/cocktails">
+          <SearchBar />
           <Cocktails cocktails={cocktails}/>
         </Route>
         <Route exact path="/signup">
