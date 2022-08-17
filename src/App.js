@@ -34,9 +34,6 @@ function App() {
         <Route exact path="/login">
           <Login/>
         </Route>
-        <Route exaxt path="cocktails/:cocktailId">
-          <CocktailDetails />
-        </Route>
         <Route path='/'>
           <SearchBar />
           <Cocktails cocktails={cocktails} />
