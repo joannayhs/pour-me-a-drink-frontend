@@ -1,8 +1,7 @@
-import React, {useState} from 'react' 
+import React from 'react' 
 
-function SearchBar(){
+function SearchBar({searchLetter, setSearchLetter}){
 
-    const [searchLetter, setSearchLetter] = useState('')
 
     function handleSubmit(e){
         e.preventDefault()

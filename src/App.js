@@ -9,7 +9,7 @@ import CocktailDetails from './components/CocktailDetails'
 
 function App() {
   const [cocktails, setCocktails] = useState([])
-  const searchLetter = 'A'
+  const [searchLetter, setSearchLetter] = useState('A')
   const params = useParams()
  
   useEffect( () => {
@@ -19,14 +19,15 @@ function App() {
       setCocktails(cocktails.drinks)
       console.log(cocktails.drinks)
     })
-  }, [] )
+  }, [searchLetter] )
   
+
   return (
     <div className="App">
       <NavBar />
       <Switch>
         <Route path="/cocktails">
-          <SearchBar />
+          <SearchBar searchLetter={searchLetter} setSearchLetter={setSearchLetter}/>
           <Cocktails cocktails={cocktails}/>
         </Route>
         <Route exact path="/signup">
@@ -36,7 +37,7 @@ function App() {
           <Login/>
         </Route>
         <Route path='/'>
-          <SearchBar />
+          <SearchBar searchLetter={searchLetter} setSearchLetter={setSearchLetter}/>
           <Cocktails cocktails={cocktails}/>
         </Route>
       </Switch>
