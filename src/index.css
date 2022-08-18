@@ -22,6 +22,10 @@ code {
   height: 200px;
 }
 
+.cocktails-container {
+  text-align: center;
+}
+
 .cocktail-details {
   position: fixed;
   width: 100%;
@@ -33,4 +37,8 @@ code {
   z-index: 2;
   text-align: center;
   background-color:white;
+}
+
+.search-bar {
+  text-align: center;
 }

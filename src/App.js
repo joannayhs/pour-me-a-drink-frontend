@@ -37,7 +37,7 @@ function App() {
         </Route>
         <Route path='/'>
           <SearchBar />
-          <Cocktails cocktails={cocktails} />
+          <Cocktails cocktails={cocktails}/>
         </Route>
       </Switch>
     </div>
