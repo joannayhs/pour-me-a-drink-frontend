@@ -3,6 +3,7 @@ import {Route, Switch, useParams, useRouteMatch} from 'react-router-dom'
 import Cocktails from './components/Cocktails'
 import NavBar from './components/NavBar'
 import SearchBar from './components/SearchBar'
+import Favorites from './components/Favorites'
 
 function App() {
   const [cocktails, setCocktails] = useState([])
@@ -26,6 +27,9 @@ function App() {
         <Route path="/cocktails">
           <SearchBar searchLetter={searchLetter} setSearchLetter={setSearchLetter}/>
           <Cocktails cocktails={cocktails}/>
+        </Route>
+        <Route path="/favorites">
+          <Favorites />
         </Route>
         <Route path='/'>
           <SearchBar searchLetter={searchLetter} setSearchLetter={setSearchLetter}/>

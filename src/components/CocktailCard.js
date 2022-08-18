@@ -1,6 +1,6 @@
 import React from 'react'
 
-function CocktailCard({cocktail, cocktails}){
+function CocktailCard({cocktail}){
 
     const cocktailId = cocktail.idDrink
 
