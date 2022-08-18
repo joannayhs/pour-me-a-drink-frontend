@@ -1,11 +1,8 @@
 import React, {useState, useEffect} from 'react'
 import {Route, Switch, useParams, useRouteMatch} from 'react-router-dom'
 import Cocktails from './components/Cocktails'
-import SignUp from './components/SignUp'
 import NavBar from './components/NavBar'
-import Login from './components/Login'
 import SearchBar from './components/SearchBar'
-import CocktailDetails from './components/CocktailDetails'
 
 function App() {
   const [cocktails, setCocktails] = useState([])
@@ -29,12 +26,6 @@ function App() {
         <Route path="/cocktails">
           <SearchBar searchLetter={searchLetter} setSearchLetter={setSearchLetter}/>
           <Cocktails cocktails={cocktails}/>
-        </Route>
-        <Route exact path="/signup">
-          <SignUp />
-        </Route>
-        <Route exact path="/login">
-          <Login/>
         </Route>
         <Route path='/'>
           <SearchBar searchLetter={searchLetter} setSearchLetter={setSearchLetter}/>

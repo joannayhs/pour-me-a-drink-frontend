@@ -20,10 +20,6 @@ function SearchBar({searchLetter, setSearchLetter}){
 
     return (
         <div className="search-bar">
-            <form onSubmit={handleSubmit}>
-                <input type="text" name="search" placeholder="Search cocktails..." />
-                <input type="submit" value="Search" />
-            </form>
             {alphabet()}
         </div>
        
