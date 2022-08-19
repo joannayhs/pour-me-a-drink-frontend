@@ -4,6 +4,8 @@ import Cocktails from './components/Cocktails'
 import NavBar from './components/NavBar'
 import SearchBar from './components/SearchBar'
 import Favorites from './components/Favorites'
+import MyRecipes from './components/MyRecipes'
+import NewRecipe from './components/NewRecipe'
 
 function App() {
   const [cocktails, setCocktails] = useState([])
@@ -30,6 +32,12 @@ function App() {
         </Route>
         <Route path="/favorites">
           <Favorites />
+        </Route>
+        <Route path="/my-recipes">
+          <MyRecipes />
+        </Route>
+        <Route path="/new-recipe">
+          <NewRecipe />
         </Route>
         <Route path='/'>
           <SearchBar searchLetter={searchLetter} setSearchLetter={setSearchLetter}/>
