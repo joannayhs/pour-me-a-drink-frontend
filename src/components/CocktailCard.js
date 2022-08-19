@@ -1,9 +1,17 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import {Link} from 'react-router-dom'
 
 function CocktailCard({cocktail, addToFavorites, favorites}){
     const [isFavorite, setIsFavorite] = useState(false)
     const cocktailId = cocktail.idDrink
+
+    useEffect(() => {
+        checkStatus()
+    }, [])
+
+    function checkStatus(){
+        return favorites.filter( cocktail => cocktail.drinkId === cocktailId).length > 0 ? setIsFavorite(true) : false
+    }
 
     function handleClick(){
         addToFavorites(cocktailId)

@@ -29,9 +29,9 @@ function App() {
 
   function addToFavorites(drinkId){
    if (favorites.filter( drink => drink.drinkId === drinkId).length > 0){
-     return favorites
+     return getFavorites()
    }else{
-     return fetch('http://localhost:4000/favorites', {
+    fetch('http://localhost:4000/favorites', {
        method: "POST",
        headers: {
          "Content-Type": "application/json",
@@ -40,6 +40,7 @@ function App() {
          "drinkId": drinkId
        })
      })
+     return getFavorites()
    }
    
 
