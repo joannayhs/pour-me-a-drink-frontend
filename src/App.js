@@ -11,16 +11,30 @@ function App() {
   const [cocktails, setCocktails] = useState([])
   const [searchLetter, setSearchLetter] = useState('A')
   const params = useParams()
+  const [favorites, setFavorites] = useState([])
  
   useEffect( () => {
-    fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${searchLetter}`)
-    .then( r => r.json())
-    .then( cocktails => {
-      setCocktails(cocktails.drinks)
-      console.log(cocktails.drinks)
-    })
+    getCocktails()
+    getFavorites()
   }, [searchLetter] )
   
+  function getCocktails(){
+    fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${searchLetter}`)
+      .then(r => r.json())
+      .then(cocktails => {
+        setCocktails(cocktails.drinks)
+        console.log(cocktails.drinks)
+      })
+  }
+
+  function  getFavorites() {
+    fetch('http://localhost:4000/favorites')
+    .then(r => r.json())
+    .then(favs =>  {
+      setFavorites(favs)
+      console.log(favs)
+    })
+  }
 
   return (
     <div className="App">
@@ -28,7 +42,7 @@ function App() {
       <Switch>
         <Route path="/cocktails">
           <SearchBar searchLetter={searchLetter} setSearchLetter={setSearchLetter}/>
-          <Cocktails cocktails={cocktails}/>
+          <Cocktails cocktails={cocktails} favorites={favorites}/>
         </Route>
         <Route path="/favorites">
           <Favorites />
@@ -41,7 +55,7 @@ function App() {
         </Route>
         <Route path='/'>
           <SearchBar searchLetter={searchLetter} setSearchLetter={setSearchLetter}/>
-          <Cocktails cocktails={cocktails}/>
+          <Cocktails cocktails={cocktails} favorites={favorites}/>
         </Route>
       </Switch>
     </div>
