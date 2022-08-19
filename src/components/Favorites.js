@@ -4,7 +4,6 @@ export default function Favorites(favorites){
 
     return(
         <>
-        Favorites!
         </>
     )
 }
