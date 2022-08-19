@@ -27,6 +27,19 @@ function App() {
       })
   }
 
+  function addToFavorites(drinkId){
+    fetch('http://localhost:4000/favorites', {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        "drinkId": drinkId
+      })
+    })
+
+  }
+
   function  getFavorites() {
     fetch('http://localhost:4000/favorites')
     .then(r => r.json())
@@ -42,7 +55,7 @@ function App() {
       <Switch>
         <Route path="/cocktails">
           <SearchBar searchLetter={searchLetter} setSearchLetter={setSearchLetter}/>
-          <Cocktails cocktails={cocktails} favorites={favorites}/>
+          <Cocktails cocktails={cocktails} favorites={favorites} addToFavorites={addToFavorites}/>
         </Route>
         <Route path="/favorites">
           <Favorites />
@@ -55,7 +68,7 @@ function App() {
         </Route>
         <Route path='/'>
           <SearchBar searchLetter={searchLetter} setSearchLetter={setSearchLetter}/>
-          <Cocktails cocktails={cocktails} favorites={favorites}/>
+          <Cocktails cocktails={cocktails} favorites={favorites} addToFavorites={addToFavorites}/>
         </Route>
       </Switch>
     </div>

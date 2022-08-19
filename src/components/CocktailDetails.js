@@ -1,7 +1,7 @@
 import React from 'react'
 import {useParams, useHistory} from 'react-router-dom'
 
-export default function CocktailDetails({cocktails}){
+export default function CocktailDetails({cocktails, favorites}){
 const params = useParams()
 const history = useHistory()
 

@@ -1,16 +1,16 @@
 import React from 'react'
 import CocktailCard from './CocktailCard'
-import {Route, Link, useRouteMatch} from 'react-router-dom'
+import {Route, useRouteMatch} from 'react-router-dom'
 import CocktailDetails from './CocktailDetails'
 
-function Cocktails({cocktails, favorites}){
+function Cocktails({cocktails, favorites, addToFavorites}){
 
 const match = useRouteMatch()
 
     function mapCocktails(){
         return cocktails.map( cocktail => {
             const cocktailId = cocktail.idDrink
-            return <Link to={`/cocktails/${cocktailId}`}><CocktailCard key={cocktail.idDrink} cocktail={cocktail} favorites={favorites}/></Link>
+            return <CocktailCard key={cocktail.idDrink} cocktail={cocktail} favorites={favorites} addToFavorites={addToFavorites}/>
         })
     }
 
@@ -19,7 +19,7 @@ const match = useRouteMatch()
             {mapCocktails()}
 
           <Route exact path={`${match.url}/:cocktailId`}>
-                <CocktailDetails cocktails={cocktails}/>
+                <CocktailDetails cocktails={cocktails} favorites={favorites}/>
             </Route>
 
         </div>
