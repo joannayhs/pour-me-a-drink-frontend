@@ -28,15 +28,20 @@ function App() {
   }
 
   function addToFavorites(drinkId){
-    fetch('http://localhost:4000/favorites', {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        "drinkId": drinkId
-      })
-    })
+   if (favorites.filter( drink => drink.drinkId === drinkId).length > 0){
+     return favorites
+   }else{
+     return fetch('http://localhost:4000/favorites', {
+       method: "POST",
+       headers: {
+         "Content-Type": "application/json",
+       },
+       body: JSON.stringify({
+         "drinkId": drinkId
+       })
+     })
+   }
+   
 
   }
 
