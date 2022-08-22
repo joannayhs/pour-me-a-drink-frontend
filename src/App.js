@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import {Route, Switch, useParams, useRouteMatch} from 'react-router-dom'
+import {Route, Switch } from 'react-router-dom'
 import Cocktails from './components/Cocktails'
 import NavBar from './components/NavBar'
 import SearchBar from './components/SearchBar'
@@ -10,7 +10,6 @@ import NewRecipe from './components/NewRecipe'
 function App() {
   const [cocktails, setCocktails] = useState([])
   const [searchLetter, setSearchLetter] = useState('A')
-  const params = useParams()
   const [favorites, setFavorites] = useState([])
  
   useEffect( () => {
@@ -28,7 +27,7 @@ function App() {
   }
 
   function addToFavorites(drinkId){
-   if (favorites.filter( drink => drink.drinkId === drinkId).length > 0){
+   if (favorites.length  > 0 && favorites.filter( drink => drink.drinkId === drinkId).length > 0){
      return getFavorites()
    }else{
     fetch('http://localhost:4000/favorites', {
@@ -42,8 +41,6 @@ function App() {
      })
      return getFavorites()
    }
-   
-
   }
 
   function  getFavorites() {
@@ -51,7 +48,6 @@ function App() {
     .then(r => r.json())
     .then(favs =>  {
       setFavorites(favs)
-      console.log(favs)
     })
   }
 

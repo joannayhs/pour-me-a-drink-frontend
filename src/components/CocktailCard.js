@@ -10,7 +10,10 @@ function CocktailCard({cocktail, addToFavorites, favorites}){
     }, [])
 
     function checkStatus(){
-        return favorites.filter( cocktail => cocktail.drinkId === cocktailId).length > 0 ? setIsFavorite(true) : false
+        if(favorites.length > 0){
+            return favorites.filter(cocktail => cocktail.drinkId === cocktailId).length > 0 ? setIsFavorite(true) : false
+        }
+       
     }
 
     function handleClick(){
