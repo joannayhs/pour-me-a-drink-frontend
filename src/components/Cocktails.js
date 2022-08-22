@@ -8,6 +8,7 @@ function Cocktails({cocktails, favorites, addToFavorites}){
 const match = useRouteMatch()
 
     function mapCocktails(){
+        console.log(cocktails)
         return cocktails.map( cocktail => {
             const cocktailId = cocktail.idDrink
             return <CocktailCard key={cocktail.idDrink} cocktail={cocktail} favorites={favorites} addToFavorites={addToFavorites}/>

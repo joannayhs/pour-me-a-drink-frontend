@@ -11,13 +11,13 @@ function CocktailCard({cocktail, addToFavorites, favorites}){
 
     function checkStatus(){
         if(favorites.length > 0){
-            return favorites.filter(cocktail => cocktail.drinkId === cocktailId).length > 0 ? setIsFavorite(true) : false
+            return favorites.filter(cocktail => cocktail.idDrink === cocktailId).length > 0 ? setIsFavorite(true) : false
         }
        
     }
 
     function handleClick(){
-        addToFavorites(cocktailId)
+        addToFavorites(cocktail)
         setIsFavorite((isFavorite) => !isFavorite)
     }
 

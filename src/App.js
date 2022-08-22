@@ -22,24 +22,21 @@ function App() {
       .then(r => r.json())
       .then(cocktails => {
         setCocktails(cocktails.drinks)
-        console.log(cocktails.drinks)
       })
   }
 
-  function addToFavorites(drinkId){
-   if (favorites.length  > 0 && favorites.filter( drink => drink.drinkId === drinkId).length > 0){
-     return getFavorites()
+  function addToFavorites(cocktail){
+   if (favorites.length  > 0 && favorites.filter( drink => drink.idDrink === cocktail.idDrink).length > 0){
+     return favorites
    }else{
     fetch('http://localhost:4000/favorites', {
        method: "POST",
        headers: {
          "Content-Type": "application/json",
        },
-       body: JSON.stringify({
-         "drinkId": drinkId
-       })
+       body: JSON.stringify(cocktail)
      })
-     return getFavorites()
+     return favorites
    }
   }
 
