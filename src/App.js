@@ -11,6 +11,7 @@ function App() {
   const [cocktails, setCocktails] = useState([])
   const [searchLetter, setSearchLetter] = useState('A')
   const [favorites, setFavorites] = useState([])
+  const [myRecipes, setMyRecipes] = useState([])
  
   useEffect( () => {
     getCocktails()
@@ -48,6 +49,17 @@ function App() {
     })
   }
 
+  function addNewRecipe(formData){
+    fetch('http://localhost:4000/my-drinks', {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData)
+    })
+    return myRecipes
+  }
+
   return (
     <div className="App">
       <NavBar />
@@ -63,7 +75,7 @@ function App() {
           <MyRecipes />
         </Route>
         <Route path="/new-recipe">
-          <NewRecipe />
+          <NewRecipe addNewRecipe={addNewRecipe}/>
         </Route>
         <Route path='/'>
           <SearchBar searchLetter={searchLetter} setSearchLetter={setSearchLetter}/>
