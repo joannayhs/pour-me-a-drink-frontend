@@ -54,7 +54,7 @@ export default function NewRecipe({addNewRecipe}){
             <input type="text" placeholder="Drink Name" name="strDrink" onChange={handleChange}/> <br/><br/>
            
             <label>Drink Category</label><br />
-            <select name="strCategory" placeholder="Category">
+            <select name="strCategory" placeholder="Category" defaultValue="cocktail">
                 <option value="cocktail">Cocktail</option>
                 <option value="shot">Shot</option>
             </select><br/>

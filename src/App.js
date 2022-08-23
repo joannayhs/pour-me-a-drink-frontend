@@ -72,7 +72,7 @@ function App() {
           <Favorites favorites={favorites} addToFavorites={addToFavorites}/>
         </Route>
         <Route path="/my-recipes">
-          <MyRecipes />
+          <MyRecipes cocktails={cocktails} favorites={favorites} addToFavorites={addToFavorites}/>
         </Route>
         <Route path="/new-recipe">
           <NewRecipe addNewRecipe={addNewRecipe}/>
