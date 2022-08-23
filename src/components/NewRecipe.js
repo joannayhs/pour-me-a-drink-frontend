@@ -22,17 +22,26 @@ export default function NewRecipe({addNewRecipe}){
            <>
                <input type="text" placeholder={`${field.ingredient} ${index + 1}`} name={`strIngredient${index + 1}`} onChange={handleChange} /> <br />
                <input type="text" placeholder={`${field.measurement} ${index + 1}`} name={`strMeasure${index + 1}`} onChange={handleChange} /> <br />
-               <button onClick={(addIngredientField)}>Add Another Ingredient</button><br/>
+               <button onClick={e => removeIngredientField(e, index)}>X</button><br/>
            </>
 
        ) 
         })
     }
 
-    function addIngredientField(){
+    function addIngredientField(e){
+        e.preventDefault()
         setIngredientFields([...ingredientFields, {
             ingredient: "Ingredient", measurement: "Measurement"
         }])
+    }
+
+    function removeIngredientField(e, index){
+        e.preventDefault()
+       let fields = [...ingredientFields]
+       fields.splice(index, 1) 
+       return setIngredientFields(fields)
+    
     }
 
     return (
@@ -51,10 +60,11 @@ export default function NewRecipe({addNewRecipe}){
             <input type="text" placeholder="image URL" name="strDrinkThumb"onChange={handleChange}/> <br/>
             
             {mapIngredientFields()}
-            
+            <button onClick={(addIngredientField)}>Add Another Ingredient</button><br />
+
             <label>Instructions:</label><br />
             <textarea placeholder="Instructions" name="strInstructions" onChange={handleChange} /> <br />
-            <button>Submit</button>
+            <button type="submit">Submit</button>
         </form>
         </>
     )
