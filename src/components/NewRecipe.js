@@ -1,7 +1,9 @@
 import React, {useState} from  'react'
+import {useHistory} from 'react-router-dom'
 
 
 export default function NewRecipe({addNewRecipe}){
+    const history = useHistory()
     const [formData, setFormData] = useState([])
     const [ingredientFields, setIngredientFields] = useState([
       {ingredient: "Ingredient", measurement: 'Measurement'}
@@ -10,6 +12,8 @@ export default function NewRecipe({addNewRecipe}){
     function handleSubmit(e){
         e.preventDefault()
         addNewRecipe(formData)
+        setFormData([])
+        history.push('/my-recipes')
     }
 
     function handleChange(e){
