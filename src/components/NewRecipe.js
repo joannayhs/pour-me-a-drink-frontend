@@ -8,9 +8,17 @@ export default function NewRecipe({addNewRecipe}){
     const [ingredientFields, setIngredientFields] = useState([
       {ingredient: "Ingredient", measurement: 'Measurement'}
     ])
-    const [isChecked, setIsChecked] = useState(false)
     
   
+    function addNewRecipe(formData) {
+        fetch('http://localhost:4000/my-drinks', {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(formData)
+        })
+    }
 
     function handleSubmit(e){
         e.preventDefault()
@@ -24,8 +32,8 @@ export default function NewRecipe({addNewRecipe}){
     }
 
     function handleCheck(e){
-        setIsChecked(!isChecked)
-        if(isChecked){
+        console.log(e.target.checked)
+        if(e.target.checked){
             setFormData({...formData, 
                 "strAlcoholic": "Alocholic"
             })

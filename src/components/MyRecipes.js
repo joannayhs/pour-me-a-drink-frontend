@@ -6,16 +6,7 @@ import NewRecipe from './NewRecipe'
 export default function MyRecipes({cocktails, favorites, addToFavorites}){ 
     const [myRecipes, setMyRecipes] = useState([])
 
-    function addNewRecipe(formData) {
-        fetch('http://localhost:4000/my-drinks', {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(formData)
-        })
-        return myRecipes
-    }
+   
 
     useEffect(() => {
        getRecipes()
@@ -33,15 +24,14 @@ export default function MyRecipes({cocktails, favorites, addToFavorites}){
             return <CocktailCard key={recipe.id} cocktail={recipe} addToFavorites={addToFavorites} favorites={favorites}/>
         })
     }
+    
+    
 
     return (
         <>
             <Link to="/new-recipe">Add Recipe</Link><br/>
             {createCards()}
 
-            <Route path="/new-recipe">
-                <NewRecipe addNewRecipe={addNewRecipe} />
-            </Route>
         </>
     )
 }

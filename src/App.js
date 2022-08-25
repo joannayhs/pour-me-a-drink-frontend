@@ -23,6 +23,7 @@ function App() {
       .then(cocktails => {
         setCocktails(cocktails.drinks)
       })
+      return cocktails
   }
 
   function addToFavorites(cocktail){
@@ -46,6 +47,7 @@ function App() {
     .then(favs =>  {
       setFavorites(favs)
     })
+    return favorites
   }
 
   return (
@@ -61,6 +63,9 @@ function App() {
         </Route>
         <Route path="/my-recipes">
           <MyRecipes cocktails={cocktails} favorites={favorites} addToFavorites={addToFavorites}/>
+        </Route>
+        <Route path="/new-recipe">
+          <NewRecipe />
         </Route>
         <Route path='/'>
           <SearchBar searchLetter={searchLetter} setSearchLetter={setSearchLetter}/>
