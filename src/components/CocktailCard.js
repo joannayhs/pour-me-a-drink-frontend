@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom'
 
 function CocktailCard({cocktail, addToFavorites, favorites}){
     const [isFavorite, setIsFavorite] = useState(false)
-    const cocktailId = cocktail.idDrink
+    const cocktailId = cocktail.idDrink ? cocktail.idDrink : cocktail.id
 
     useEffect(() => {
         checkStatus()

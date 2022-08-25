@@ -5,8 +5,11 @@ export default function CocktailDetails({cocktails, favorites}){
 const params = useParams()
 const history = useHistory()
 
-const cocktail = cocktails.find( cocktail => cocktail.idDrink === params.cocktailId)
+const cocktail = cocktails.find( cocktail => cocktail.idDrink === params.cocktailId )
+console.log(params)
+
     return(
+        
         <div className="cocktail-details">
             <button onClick={() => history.goBack()}>Close</button>
             <p>{cocktail.strAlcoholic}</p>
