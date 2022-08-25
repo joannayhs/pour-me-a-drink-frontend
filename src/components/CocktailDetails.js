@@ -1,16 +1,17 @@
 import React from 'react'
 import {useParams, useHistory} from 'react-router-dom'
 
-export default function CocktailDetails({cocktails, favorites}){
+export default function CocktailDetails({cocktails, favorites, myRecipes}){
 const params = useParams()
 const history = useHistory()
 
-const cocktail = cocktails.find( cocktail => cocktail.idDrink === params.cocktailId )
-console.log(params)
+
+    const cocktail = cocktails.find(cocktail => cocktail.idDrink === params.cocktailId) ? cocktails.find(cocktail => cocktail.idDrink === params.cocktailId) : myRecipes.find(cocktail => cocktail.id === params.cocktailId)
 
     return(
         
         <div className="cocktail-details">
+            {console.log(myRecipes)}
             <button onClick={() => history.goBack()}>Close</button>
             <p>{cocktail.strAlcoholic}</p>
             <img src={cocktail.strDrinkThumb} position="absolute" width="200px"/>

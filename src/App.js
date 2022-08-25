@@ -11,10 +11,12 @@ function App() {
   const [cocktails, setCocktails] = useState([])
   const [searchLetter, setSearchLetter] = useState('A')
   const [favorites, setFavorites] = useState([])
+  const [myRecipes, setMyRecipes] = useState([])
  
   useEffect( () => {
     getCocktails()
     getFavorites()
+    getMyRecipes()
   }, [searchLetter] )
   
   function getCocktails(){
@@ -50,26 +52,34 @@ function App() {
     return favorites
   }
 
+  function getMyRecipes(){
+    fetch('http://localhost:4000/my-drinks')
+    .then(r => r.json())
+    .then( rec => {
+      setMyRecipes(rec)
+    })
+  }
+
   return (
     <div className="App">
       <NavBar />
       <Switch>
         <Route path="/cocktails">
           <SearchBar searchLetter={searchLetter} setSearchLetter={setSearchLetter}/>
-          <Cocktails cocktails={cocktails} favorites={favorites} addToFavorites={addToFavorites}/>
+          <Cocktails cocktails={cocktails} favorites={favorites} addToFavorites={addToFavorites} myRecipes={myRecipes}/>
         </Route>
         <Route path="/favorites">
           <Favorites favorites={favorites} addToFavorites={addToFavorites}/>
         </Route>
         <Route path="/my-recipes">
-          <MyRecipes cocktails={cocktails} favorites={favorites} addToFavorites={addToFavorites}/>
+          <MyRecipes favorites={favorites} addToFavorites={addToFavorites} myRecipes={myRecipes} cocktails={cocktails}/>
         </Route>
         <Route path="/new-recipe">
           <NewRecipe />
         </Route>
         <Route path='/'>
           <SearchBar searchLetter={searchLetter} setSearchLetter={setSearchLetter}/>
-          <Cocktails cocktails={cocktails} favorites={favorites} addToFavorites={addToFavorites}/>
+          <Cocktails cocktails={cocktails} favorites={favorites} addToFavorites={addToFavorites} myRecipes={myRecipes}/>
         </Route>
       </Switch>
     </div>

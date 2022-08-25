@@ -32,7 +32,6 @@ export default function NewRecipe({addNewRecipe}){
     }
 
     function handleCheck(e){
-        console.log(e.target.checked)
         if(e.target.checked){
             setFormData({...formData, 
                 "strAlcoholic": "Alocholic"

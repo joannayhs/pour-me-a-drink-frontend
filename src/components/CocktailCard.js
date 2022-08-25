@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import {Link} from 'react-router-dom'
 
-function CocktailCard({cocktail, addToFavorites, favorites}){
+function CocktailCard({cocktail, addToFavorites, favorites, myRecipes}){
     const [isFavorite, setIsFavorite] = useState(false)
     const cocktailId = cocktail.idDrink ? cocktail.idDrink : cocktail.id
 

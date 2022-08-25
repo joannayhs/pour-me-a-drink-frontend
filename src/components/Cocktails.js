@@ -3,7 +3,7 @@ import CocktailCard from './CocktailCard'
 import {Route, useRouteMatch} from 'react-router-dom'
 import CocktailDetails from './CocktailDetails'
 
-function Cocktails({cocktails, favorites, addToFavorites}){
+function Cocktails({cocktails, favorites, addToFavorites, myRecipes}){
 
 const match = useRouteMatch()
 
@@ -20,7 +20,7 @@ const match = useRouteMatch()
             {mapCocktails()}
 
           <Route exact path={`${match.url}/:cocktailId`}>
-                <CocktailDetails cocktails={cocktails} favorites={favorites}/>
+                <CocktailDetails cocktails={cocktails} favorites={favorites} myRecipes={myRecipes}/>
             </Route>
 
         </div>
