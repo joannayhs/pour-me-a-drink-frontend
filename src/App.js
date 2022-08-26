@@ -46,7 +46,11 @@ function App() {
 
   function removeFavorite(cocktail){
     if (favorites.length > 0){
-      setFavorites(favorites.filter( drink => drink.idDrink === cocktail.idDrink))
+      const drink = favorites.find( drink => drink.idDrink === cocktail.idDrink)
+      fetch(`http://localhost:4000/favorites/${drink.id}`,{
+        method: "DELETE"
+      })
+      .then( () => setFavorites(favorites.filter( d => d.idDrink === cocktail.idDrink)))
     }
   }
 
