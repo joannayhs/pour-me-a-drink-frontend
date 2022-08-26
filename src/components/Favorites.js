@@ -15,7 +15,6 @@ export default function Favorites({favorites , addToFavorites, removeFavorite}){
 
     return(
         <>
-            {console.log(favorites)}
             {loadFavorites()}
         </>
     )

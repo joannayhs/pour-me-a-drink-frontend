@@ -24,10 +24,10 @@ function App() {
   function getCocktails(){
     fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${searchLetter}`)
       .then(r => r.json())
-      .then(cocktails => {
-        setCocktails(cocktails.drinks)
-      })
-  }
+      .then(drinks => {
+          setCocktails(drinks.drinks)
+        })
+      }
 
   function addToFavorites(cocktail){
    if (favorites.length  > 0 && favorites.filter( drink => drink.idDrink === cocktail.idDrink).length > 0){
@@ -40,17 +40,20 @@ function App() {
        },
        body: JSON.stringify(cocktail)
      })
-     return favorites
+     setFavorites([...favorites, cocktail])
    }
   }
 
   function removeFavorite(cocktail){
-    if (favorites.length > 0){
+    if (favorites.length > 0 && favorites.find(drink => drink.idDrink === cocktail.idDrink)){
       const drink = favorites.find( drink => drink.idDrink === cocktail.idDrink)
       fetch(`http://localhost:4000/favorites/${drink.id}`,{
         method: "DELETE"
       })
-      .then( () => setFavorites(favorites.filter( d => d.idDrink === cocktail.idDrink)))
+      .then( () => console.log("Drink removed from favorites"))
+      return getFavorites()
+    }else{
+      return favorites
     }
   }
 
@@ -90,7 +93,7 @@ function App() {
         </Route>
         <Route path='/'>
           <SearchBar searchLetter={searchLetter} setSearchLetter={setSearchLetter}/>
-          <Cocktails cocktails={cocktails} favorites={favorites} addToFavorites={addToFavorites} myRecipes={myRecipes} removeFavorite={removeFavorite}/>
+          <Cocktails cocktails={cocktails} favorites={favorites} addToFavorites={addToFavorites} myRecipes={myRecipes} removeFavorite={removeFavorite} />
         </Route>
       </Switch>
     </div>

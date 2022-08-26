@@ -14,7 +14,6 @@ function SearchBar({searchLetter, setSearchLetter}){
 
     function handleOnClick(e)  {
         setSearchLetter(e.target.innerText)
-        console.log(searchLetter)
     }
 
 
