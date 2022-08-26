@@ -6,7 +6,7 @@ const params = useParams()
 const history = useHistory()
 
 
-    const cocktail = cocktails.find(cocktail => cocktail.idDrink === params.cocktailId) ? cocktails.find(cocktail => cocktail.idDrink === params.cocktailId) : myRecipes.find(cocktail => cocktail.id === params.cocktailId)
+    const cocktail = cocktails.find(cocktail => cocktail.idDrink === params.cocktailId)
 
     return(
         

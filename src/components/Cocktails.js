@@ -3,15 +3,14 @@ import CocktailCard from './CocktailCard'
 import {Route, useRouteMatch} from 'react-router-dom'
 import CocktailDetails from './CocktailDetails'
 
-function Cocktails({cocktails, favorites, addToFavorites, myRecipes}){
+function Cocktails({cocktails, favorites, addToFavorites, myRecipes, removeFavorite}){
 
 const match = useRouteMatch()
 
     function mapCocktails(){
-        console.log(cocktails)
         return cocktails.map( cocktail => {
             const cocktailId = cocktail.idDrink
-            return <CocktailCard key={cocktail.idDrink} cocktail={cocktail} favorites={favorites} addToFavorites={addToFavorites}/>
+            return <CocktailCard key={cocktail.idDrink} cocktail={cocktail} favorites={favorites} addToFavorites={addToFavorites} removeFavorite={removeFavorite}/>
         })
     }
 
