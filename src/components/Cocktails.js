@@ -19,7 +19,7 @@ const match = useRouteMatch()
             {mapCocktails()}
 
           <Route exact path={`${match.url}/:cocktailId`}>
-                <CocktailDetails cocktails={cocktails} favorites={favorites} myRecipes={myRecipes}/>
+                <CocktailDetails cocktails={cocktails} favorites={favorites} myRecipes={myRecipes} addToFavorites={addToFavorites} removeFavorite={removeFavorite}/>
             </Route>
 
         </div>
