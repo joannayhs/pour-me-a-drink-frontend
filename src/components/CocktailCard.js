@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import {Link} from 'react-router-dom'
 
-function CocktailCard({cocktail, addToFavorites, favorites, myRecipes, removeFavorite}){
+function CocktailCard({cocktail, addToFavorites, favorites, removeFavorite}){
     const [isFavorite, setIsFavorite] = useState(false)
     const cocktailId = cocktail.idDrink ? cocktail.idDrink : cocktail.id
 
@@ -11,7 +11,7 @@ function CocktailCard({cocktail, addToFavorites, favorites, myRecipes, removeFav
 
     function checkStatus(){
         if(favorites.length > 0){
-            return favorites.filter(cocktail => cocktail.idDrink === cocktailId).length > 0 ? setIsFavorite(true) : false
+            return favorites.filter(cocktail => cocktail.idDrink || cocktail.id === cocktailId).length > 0 ? setIsFavorite(true) : false
         }
        
     }

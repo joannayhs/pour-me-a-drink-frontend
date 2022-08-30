@@ -16,7 +16,6 @@ function App() {
   useEffect( () => {
     getCocktails()
     getFavorites()
-    getMyRecipes()
   }, [searchLetter] )
   
 
@@ -67,13 +66,7 @@ function App() {
     return favorites
   }
 
-  function getMyRecipes(){
-    fetch('http://localhost:4000/cocktails')
-    .then(r => r.json())
-    .then( rec => {
-      setMyRecipes(rec)
-    })
-  }
+ 
 
   return (
     <div className="App">
@@ -81,20 +74,20 @@ function App() {
       <Switch>
         <Route path="/cocktails">
           <SearchBar searchLetter={searchLetter} setSearchLetter={setSearchLetter}/>
-          <Cocktails cocktails={cocktails} favorites={favorites} addToFavorites={addToFavorites} removeFavorite={removeFavorite} myRecipes={myRecipes}/>
+          <Cocktails cocktails={cocktails} favorites={favorites} addToFavorites={addToFavorites} removeFavorite={removeFavorite}/>
         </Route>
         <Route path="/favorites">
           <Favorites favorites={favorites} addToFavorites={addToFavorites} removeFavorite={removeFavorite}/>
         </Route>
         <Route path="/my-recipes">
-          <MyRecipes favorites={favorites} addToFavorites={addToFavorites} myRecipes={myRecipes}/>
+          <MyRecipes favorites={favorites} addToFavorites={addToFavorites} />
         </Route>
         <Route path="/new-recipe">
           <NewRecipe />
         </Route>
         <Route path='/'>
           <SearchBar searchLetter={searchLetter} setSearchLetter={setSearchLetter}/>
-          <Cocktails cocktails={cocktails} favorites={favorites} addToFavorites={addToFavorites} myRecipes={myRecipes} removeFavorite={removeFavorite} />
+          <Cocktails cocktails={cocktails} favorites={favorites} addToFavorites={addToFavorites} removeFavorite={removeFavorite} />
         </Route>
       </Switch>
     </div>
