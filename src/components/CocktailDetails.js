@@ -10,7 +10,7 @@ const [isFavorite, setIsFavorite] = useState(false)
     useEffect(() => {
         getCocktail()
         checkStatus()
-    }, [])
+    }, [cocktail])
 
 
     function getCocktail(){
