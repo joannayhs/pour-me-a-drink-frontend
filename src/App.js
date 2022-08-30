@@ -16,6 +16,7 @@ function App() {
   useEffect( () => {
     getCocktails()
     getFavorites()
+    getMyRecipes()
   }, [searchLetter] )
   
 
@@ -66,7 +67,24 @@ function App() {
     return favorites
   }
 
- 
+  function getMyRecipes() {
+    fetch('http://localhost:4000/cocktails')
+      .then(r => r.json())
+      .then(rec => {
+        setMyRecipes(rec)
+      })
+  }
+
+  function addNewRecipe(formData) {
+    fetch('http://localhost:4000/cocktails', {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData)
+    })
+    return getMyRecipes()
+  }
 
   return (
     <div className="App">
@@ -74,20 +92,20 @@ function App() {
       <Switch>
         <Route path="/cocktails">
           <SearchBar searchLetter={searchLetter} setSearchLetter={setSearchLetter}/>
-          <Cocktails cocktails={cocktails} favorites={favorites} addToFavorites={addToFavorites} removeFavorite={removeFavorite}/>
+          <Cocktails cocktails={cocktails} favorites={favorites} addToFavorites={addToFavorites} removeFavorite={removeFavorite} myRecipes={myRecipes}/>
         </Route>
         <Route path="/favorites">
-          <Favorites favorites={favorites} addToFavorites={addToFavorites} removeFavorite={removeFavorite}/>
+          <Favorites favorites={favorites} addToFavorites={addToFavorites} removeFavorite={removeFavorite} />
         </Route>
         <Route path="/my-recipes">
-          <MyRecipes favorites={favorites} addToFavorites={addToFavorites} />
+          <MyRecipes favorites={favorites} addToFavorites={addToFavorites} removeFavorite={removeFavorite} myRecipes={myRecipes}/>
         </Route>
         <Route path="/new-recipe">
-          <NewRecipe />
+          <NewRecipe addNewRecipe={addNewRecipe} />
         </Route>
         <Route path='/'>
           <SearchBar searchLetter={searchLetter} setSearchLetter={setSearchLetter}/>
-          <Cocktails cocktails={cocktails} favorites={favorites} addToFavorites={addToFavorites} removeFavorite={removeFavorite} />
+          <Cocktails cocktails={cocktails} favorites={favorites} addToFavorites={addToFavorites} removeFavorite={removeFavorite} myRecipes={myRecipes}/>
         </Route>
       </Switch>
     </div>

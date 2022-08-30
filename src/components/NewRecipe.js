@@ -2,24 +2,13 @@ import React, {useState} from  'react'
 import {useHistory} from 'react-router-dom'
 
 
-export default function NewRecipe({}){
+export default function NewRecipe({addNewRecipe}){
     const history = useHistory()
     const [formData, setFormData] = useState([])
     const [ingredientFields, setIngredientFields] = useState([
       {ingredient: "Ingredient", measurement: 'Measurement'}
     ])
     
-  
-    function addNewRecipe(formData) {
-        fetch('http://localhost:4000/cocktails', {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(formData)
-        })
-    }
-
     function handleSubmit(e){
         e.preventDefault()
         addNewRecipe({...formData, idDrink: Math.floor(Math.random() * 10001) })

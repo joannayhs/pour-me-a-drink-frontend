@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import {useParams, useHistory} from 'react-router-dom'
 
-export default function CocktailDetails({cocktails, favorites, addToFavorites, removeFavorite}){
+export default function CocktailDetails({ favorites, addToFavorites, removeFavorite, myRecipes}){
 const params = useParams()
 const history = useHistory()
 const [cocktail, setCocktail] = useState('')
@@ -14,11 +14,16 @@ const [isFavorite, setIsFavorite] = useState(false)
 
 
     function getCocktail(){
-        fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${params.cocktailId}`)
-        .then( r => r.json())
-        .then( cocktail => {
-            setCocktail( cocktail.drinks[0])
-        })
+        if(myRecipes.filter( drink => drink.idDrink.toString() === params.cocktailId).length > 0){
+            const drink = myRecipes.find( drink => drink.idDrink.toString() === params.cocktailId)
+            setCocktail(drink)
+        }else{
+            fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${params.cocktailId}`)
+                .then(r => r.json())
+                .then(cocktail => {
+                    setCocktail(cocktail.drinks[0])
+                })
+        }
     }
 
     
