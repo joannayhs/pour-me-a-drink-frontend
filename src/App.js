@@ -41,6 +41,7 @@ function App() {
        body: JSON.stringify(cocktail)
      })
      setFavorites([...favorites, cocktail])
+     getFavorites()
    }
   }
 
@@ -53,7 +54,7 @@ function App() {
       .then( () => console.log("Drink removed from favorites"))
       return getFavorites()
     }else{
-      return favorites
+      return getFavorites()
     }
   }
 
@@ -80,7 +81,7 @@ function App() {
       <Switch>
         <Route path="/cocktails">
           <SearchBar searchLetter={searchLetter} setSearchLetter={setSearchLetter}/>
-          <Cocktails cocktails={cocktails} favorites={favorites} addToFavorites={addToFavorites} removeFavorite={removeFavorite}myRecipes={myRecipes}/>
+          <Cocktails cocktails={cocktails} favorites={favorites} addToFavorites={addToFavorites} removeFavorite={removeFavorite} myRecipes={myRecipes}/>
         </Route>
         <Route path="/favorites">
           <Favorites favorites={favorites} addToFavorites={addToFavorites} removeFavorite={removeFavorite}/>
