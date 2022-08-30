@@ -22,7 +22,7 @@ export default function NewRecipe({}){
 
     function handleSubmit(e){
         e.preventDefault()
-        addNewRecipe(formData)
+        addNewRecipe({...formData, idDrink: Math.floor(Math.random() * 10001) })
         setFormData([])
         history.push('/my-recipes')
     }
