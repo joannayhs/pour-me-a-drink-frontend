@@ -2,7 +2,7 @@ import React, {useState} from  'react'
 import {useHistory} from 'react-router-dom'
 
 
-export default function NewRecipe({addNewRecipe}){
+export default function NewRecipe({}){
     const history = useHistory()
     const [formData, setFormData] = useState([])
     const [ingredientFields, setIngredientFields] = useState([
@@ -11,7 +11,7 @@ export default function NewRecipe({addNewRecipe}){
     
   
     function addNewRecipe(formData) {
-        fetch('http://localhost:4000/my-drinks', {
+        fetch('http://localhost:4000/cocktails', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
