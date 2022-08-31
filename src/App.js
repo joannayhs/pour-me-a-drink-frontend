@@ -86,26 +86,37 @@ function App() {
     return getMyRecipes()
   }
 
+  function updateRecipe(recipe, formData){
+    fetch(`http://localhost:4000/cocktails/${recipe.idDrink}`,{
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData)
+    })
+    return getMyRecipes()
+  }
+
   return (
     <div className="App">
       <NavBar />
       <Switch>
         <Route  path='/cocktails'>
           <SearchBar searchLetter={searchLetter} setSearchLetter={setSearchLetter} />
-          <Cocktails cocktails={cocktails} favorites={favorites} addToFavorites={addToFavorites} removeFavorite={removeFavorite} myRecipes={myRecipes} />
+          <Cocktails cocktails={cocktails} favorites={favorites} addToFavorites={addToFavorites} removeFavorite={removeFavorite} myRecipes={myRecipes} updateRecipe={updateRecipe}/>
         </Route>
         <Route  path="/favorites">
           <Favorites favorites={favorites} addToFavorites={addToFavorites} removeFavorite={removeFavorite} />
         </Route>
         <Route  path="/my-recipes">
-          <MyRecipes favorites={favorites} addToFavorites={addToFavorites} removeFavorite={removeFavorite} myRecipes={myRecipes}/>
+          <MyRecipes favorites={favorites} addToFavorites={addToFavorites} removeFavorite={removeFavorite} myRecipes={myRecipes} udpateRecipe={updateRecipe}/>
         </Route>
         <Route  path="/new-recipe">
           <NewRecipe addNewRecipe={addNewRecipe} />
         </Route>
         <Route path='/'>
           <SearchBar searchLetter={searchLetter} setSearchLetter={setSearchLetter} />
-          <Cocktails cocktails={cocktails} favorites={favorites} addToFavorites={addToFavorites} removeFavorite={removeFavorite} myRecipes={myRecipes} />
+          <Cocktails cocktails={cocktails} favorites={favorites} addToFavorites={addToFavorites} removeFavorite={removeFavorite} myRecipes={myRecipes} updateRecipe={updateRecipe} />
         </Route>
       </Switch>
     </div>

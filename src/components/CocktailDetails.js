@@ -6,7 +6,6 @@ const params = useParams()
 const history = useHistory()
 const [cocktail, setCocktail] = useState('')
 const [isFavorite, setIsFavorite] = useState(false)
-const match = useRouteMatch()
 
     useEffect(() => {
         getCocktail()
@@ -18,12 +17,14 @@ const match = useRouteMatch()
         if(myRecipes.filter( drink => drink.idDrink.toString() === params.cocktailId).length > 0){
             const drink = myRecipes.find( drink => drink.idDrink.toString() === params.cocktailId)
             setCocktail(drink)
+            return cocktail
         }else{
             fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${params.cocktailId}`)
                 .then(r => r.json())
                 .then(cocktail => {
                     setCocktail(cocktail.drinks[0])
                 })
+                return cocktail
         }
     }
 
@@ -49,6 +50,7 @@ const match = useRouteMatch()
     return(
         
         <div className="cocktail-details">
+            {console.log(params)}
             <button onClick={() => history.goBack()}>Close</button>
             <p>{cocktail.strDrink}</p>
             <p>{cocktail.strAlcoholic}</p>
@@ -60,7 +62,7 @@ const match = useRouteMatch()
             <p>{cocktail.strIngredient4}{cocktail.strMeasure4}</p>
             <p>{cocktail.strIngredient5}{cocktail.strMeasure5}</p>
             <p>{cocktail.strInstructions}</p>
-            {myRecipes.filter(drink => drink.idDrink.toString() === params.cocktailId).length > 0 ? <Link to={`/new-recipe/${params.cocktailId}/edit`}>Edit Recipe</Link> : null}
+            {myRecipes.filter(drink => drink.idDrink.toString() === params.cocktailId).length > 0 ? <Link to={`/new-recipe/${cocktail.idDrink}/edit`}>Edit Recipe</Link> : null}
             <button onClick={handleOnClick}>{isFavorite ? "Remove from Favorites" : "Add to Favorites"}</button>
 
           

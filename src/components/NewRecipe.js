@@ -1,14 +1,17 @@
-import React, {useState} from  'react'
-import {useHistory} from 'react-router-dom'
+import React, {useEffect, useState} from  'react'
+import {useHistory, useParams} from 'react-router-dom'
 
 
 export default function NewRecipe({addNewRecipe, myRecipes, updateRecipe}){
     const history = useHistory()
+    const params = useParams()
     const [formData, setFormData] = useState([])
     const [ingredientFields, setIngredientFields] = useState([
       {ingredient: "Ingredient", measurement: 'Measurement'}
     ])
-    
+    const [cocktail, setCocktail] = useState('')
+
+
     function handleSubmit(e){
         e.preventDefault()
         addNewRecipe({...formData, idDrink: Math.floor(Math.random() * 10001) })
@@ -61,6 +64,7 @@ export default function NewRecipe({addNewRecipe, myRecipes, updateRecipe}){
 
     return (
         <>
+        {console.log(params)}
          <form onSubmit={handleSubmit}>
             <label>Drink Name</label><br/>
             <input type="text" placeholder="Drink Name" name="strDrink" onChange={handleChange} defaultValue="" /> <br/><br/>
