@@ -2,7 +2,7 @@ import React, {useState} from  'react'
 import {useHistory} from 'react-router-dom'
 
 
-export default function NewRecipe({addNewRecipe}){
+export default function NewRecipe({addNewRecipe, myRecipes, updateRecipe}){
     const history = useHistory()
     const [formData, setFormData] = useState([])
     const [ingredientFields, setIngredientFields] = useState([

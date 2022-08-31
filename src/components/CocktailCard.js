@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import {Link} from 'react-router-dom'
 
+
 function CocktailCard({cocktail, addToFavorites, favorites, removeFavorite, myRecipes}){
     const [isFavorite, setIsFavorite] = useState(false)
     const cocktailId = cocktail.idDrink 
@@ -34,7 +35,7 @@ function CocktailCard({cocktail, addToFavorites, favorites, removeFavorite, myRe
             {cocktail.strAlcoholic}<br/>
             {cocktail.strCategory}<br/>
             
-          
+        
             
         </div>
 

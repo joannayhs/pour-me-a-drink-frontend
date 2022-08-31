@@ -1,11 +1,12 @@
 import React, {useEffect, useState} from 'react'
-import {useParams, useHistory} from 'react-router-dom'
+import {Link, useParams, useHistory, useRouteMatch} from 'react-router-dom'
 
 export default function CocktailDetails({ favorites, addToFavorites, removeFavorite, myRecipes}){
 const params = useParams()
 const history = useHistory()
 const [cocktail, setCocktail] = useState('')
 const [isFavorite, setIsFavorite] = useState(false)
+const match = useRouteMatch()
 
     useEffect(() => {
         getCocktail()
@@ -44,9 +45,7 @@ const [isFavorite, setIsFavorite] = useState(false)
         }
     }
 
-    function handleUpdateClick(e){
-        e.preventDefault()
-    }
+   
     return(
         
         <div className="cocktail-details">
@@ -61,8 +60,10 @@ const [isFavorite, setIsFavorite] = useState(false)
             <p>{cocktail.strIngredient4}{cocktail.strMeasure4}</p>
             <p>{cocktail.strIngredient5}{cocktail.strMeasure5}</p>
             <p>{cocktail.strInstructions}</p>
-            {myRecipes.filter(drink => drink.idDrink.toString() === params.cocktailId).length > 0 ? <button onClick={handleUpdateClick}>Edit Recipe</button> : null}
+            {myRecipes.filter(drink => drink.idDrink.toString() === params.cocktailId).length > 0 ? <Link to={`/new-recipe/${params.cocktailId}/edit`}>Edit Recipe</Link> : null}
             <button onClick={handleOnClick}>{isFavorite ? "Remove from Favorites" : "Add to Favorites"}</button>
+
+          
         </div>
     )
 }

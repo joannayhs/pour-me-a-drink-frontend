@@ -90,22 +90,22 @@ function App() {
     <div className="App">
       <NavBar />
       <Switch>
-        <Route path="/cocktails">
-          <SearchBar searchLetter={searchLetter} setSearchLetter={setSearchLetter}/>
-          <Cocktails cocktails={cocktails} favorites={favorites} addToFavorites={addToFavorites} removeFavorite={removeFavorite} myRecipes={myRecipes}/>
+        <Route  path='/cocktails'>
+          <SearchBar searchLetter={searchLetter} setSearchLetter={setSearchLetter} />
+          <Cocktails cocktails={cocktails} favorites={favorites} addToFavorites={addToFavorites} removeFavorite={removeFavorite} myRecipes={myRecipes} />
         </Route>
-        <Route path="/favorites">
+        <Route  path="/favorites">
           <Favorites favorites={favorites} addToFavorites={addToFavorites} removeFavorite={removeFavorite} />
         </Route>
-        <Route path="/my-recipes">
+        <Route  path="/my-recipes">
           <MyRecipes favorites={favorites} addToFavorites={addToFavorites} removeFavorite={removeFavorite} myRecipes={myRecipes}/>
         </Route>
-        <Route path="/new-recipe">
+        <Route  path="/new-recipe">
           <NewRecipe addNewRecipe={addNewRecipe} />
         </Route>
         <Route path='/'>
-          <SearchBar searchLetter={searchLetter} setSearchLetter={setSearchLetter}/>
-          <Cocktails cocktails={cocktails} favorites={favorites} addToFavorites={addToFavorites} removeFavorite={removeFavorite} myRecipes={myRecipes}/>
+          <SearchBar searchLetter={searchLetter} setSearchLetter={setSearchLetter} />
+          <Cocktails cocktails={cocktails} favorites={favorites} addToFavorites={addToFavorites} removeFavorite={removeFavorite} myRecipes={myRecipes} />
         </Route>
       </Switch>
     </div>
