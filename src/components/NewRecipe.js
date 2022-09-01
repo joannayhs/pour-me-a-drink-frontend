@@ -63,7 +63,8 @@ export default function NewRecipe({addNewRecipe, myRecipes, updateRecipe}){
     }
 
     return (
-        <>
+        <div className="drink-form">
+            <button onClick={() => history.goBack()}>Close</button>
          <form onSubmit={handleSubmit}>
             <label>Drink Name</label><br/>
             <input type="text" placeholder="Drink Name" name="strDrink" onChange={handleChange} defaultValue="" /> <br/><br/>
@@ -90,6 +91,6 @@ export default function NewRecipe({addNewRecipe, myRecipes, updateRecipe}){
             <textarea placeholder="Instructions" name="strInstructions" onChange={handleChange} defaultValue="" /> <br /><br/>
             <button type="submit">Submit</button>
         </form>
-        </>
+        </div>
     )
 }
