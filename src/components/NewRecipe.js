@@ -64,7 +64,6 @@ export default function NewRecipe({addNewRecipe, myRecipes, updateRecipe}){
 
     return (
         <>
-        {console.log(params)}
          <form onSubmit={handleSubmit}>
             <label>Drink Name</label><br/>
             <input type="text" placeholder="Drink Name" name="strDrink" onChange={handleChange} defaultValue="" /> <br/><br/>

@@ -1,11 +1,12 @@
 import React, {useEffect, useState} from 'react'
 import {Link, useParams, useHistory, useRouteMatch} from 'react-router-dom'
 
-export default function CocktailDetails({ favorites, addToFavorites, removeFavorite, myRecipes}){
+export default function CocktailDetails({ favorites, addToFavorites, removeFavorite, myRecipes }){
 const params = useParams()
 const history = useHistory()
 const [cocktail, setCocktail] = useState('')
 const [isFavorite, setIsFavorite] = useState(false)
+let match = useRouteMatch()
 
     useEffect(() => {
         getCocktail()
@@ -49,8 +50,8 @@ const [isFavorite, setIsFavorite] = useState(false)
    
     return(
         
-        <div className="cocktail-details">
-            {console.log(params)}
+        <div className="cocktail-details"> 
+        {console.log(myRecipes.find( drink => drink.idDrink.toString() === params.cocktailId))}
             <button onClick={() => history.goBack()}>Close</button>
             <p>{cocktail.strDrink}</p>
             <p>{cocktail.strAlcoholic}</p>
@@ -62,7 +63,7 @@ const [isFavorite, setIsFavorite] = useState(false)
             <p>{cocktail.strIngredient4}{cocktail.strMeasure4}</p>
             <p>{cocktail.strIngredient5}{cocktail.strMeasure5}</p>
             <p>{cocktail.strInstructions}</p>
-            {myRecipes.filter(drink => drink.idDrink.toString() === params.cocktailId).length > 0 ? <Link to={`/new-recipe/${cocktail.idDrink}/edit`}>Edit Recipe</Link> : null}
+            {myRecipes.filter(drink => drink.idDrink.toString() === params.cocktailId).length > 0 ? <Link to={`new-recipe/${cocktail.idDrink}/edit`}>Edit Recipe</Link> : null}
             <button onClick={handleOnClick}>{isFavorite ? "Remove from Favorites" : "Add to Favorites"}</button>
 
           

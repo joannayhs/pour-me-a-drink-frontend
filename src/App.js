@@ -7,6 +7,7 @@ import Favorites from './components/Favorites'
 import MyRecipes from './components/MyRecipes'
 import NewRecipe from './components/NewRecipe'
 
+
 function App() {
   const [cocktails, setCocktails] = useState([])
   const [searchLetter, setSearchLetter] = useState('A')
@@ -100,25 +101,18 @@ function App() {
   return (
     <div className="App">
       <NavBar />
-      <Switch>
-        <Route  path='/cocktails'>
-          <SearchBar searchLetter={searchLetter} setSearchLetter={setSearchLetter} />
-          <Cocktails cocktails={cocktails} favorites={favorites} addToFavorites={addToFavorites} removeFavorite={removeFavorite} myRecipes={myRecipes} updateRecipe={updateRecipe}/>
-        </Route>
-        <Route  path="/favorites">
-          <Favorites favorites={favorites} addToFavorites={addToFavorites} removeFavorite={removeFavorite} />
-        </Route>
-        <Route  path="/my-recipes">
-          <MyRecipes favorites={favorites} addToFavorites={addToFavorites} removeFavorite={removeFavorite} myRecipes={myRecipes} udpateRecipe={updateRecipe}/>
-        </Route>
-        <Route  path="/new-recipe">
-          <NewRecipe addNewRecipe={addNewRecipe} />
-        </Route>
-        <Route path='/'>
-          <SearchBar searchLetter={searchLetter} setSearchLetter={setSearchLetter} />
-          <Cocktails cocktails={cocktails} favorites={favorites} addToFavorites={addToFavorites} removeFavorite={removeFavorite} myRecipes={myRecipes} updateRecipe={updateRecipe} />
-        </Route>
-      </Switch>
+     <Switch>
+      <Route path={'/favorites'}>
+        <Favorites favorites={favorites} addToFavorites={addToFavorites} removeFavorite={removeFavorite} myRecipes={myRecipes}/>
+      </Route>
+      <Route path={'/my-recipes'}>
+          <MyRecipes favorites={favorites} addToFavorites={addToFavorites} removeFavorite={removeFavorite} myRecipes={myRecipes} addNewRecipe={addNewRecipe} updateRecipe={updateRecipe}/>
+      </Route>
+      <Route path={['/cocktails', '/']}>
+          <SearchBar setSearchLetter={setSearchLetter}/>
+          <Cocktails cocktails={cocktails} favorites={favorites} addToFavorites={addToFavorites} myRecipes={myRecipes} removeFavorite={removeFavorite}/>
+      </Route>
+     </Switch>
     </div>
   );
 }

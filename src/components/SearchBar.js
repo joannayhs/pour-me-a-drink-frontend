@@ -1,11 +1,7 @@
 import React from 'react' 
 
-function SearchBar({searchLetter, setSearchLetter}){
+function SearchBar({setSearchLetter}){
 
-
-    function handleSubmit(e){
-        e.preventDefault()
-    }
 
     function alphabet(){
         const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"

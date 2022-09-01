@@ -1,10 +1,10 @@
 import React from 'react'
-import {Link, Route, useRouteMatch} from 'react-router-dom'
+import {Link, useRouteMatch, Route} from 'react-router-dom'
 import CocktailCard from './CocktailCard'
 import NewRecipe from './NewRecipe'
+import CocktailDetails from './CocktailDetails'
 
-
-export default function MyRecipes({favorites, addToFavorites, removeFavorite, myRecipes}){ 
+export default function MyRecipes({favorites, addToFavorites, removeFavorite, myRecipes, addNewRecipe, updateRecipe}){ 
     const match = useRouteMatch()
 
     function createCards(){
@@ -17,10 +17,16 @@ export default function MyRecipes({favorites, addToFavorites, removeFavorite, my
     
     return (
         <>
-            <Link to="/new-recipe">Add Recipe</Link><br/>
+            <Link to={`${match.url}/new`}>Add Recipe</Link><br/>
             {createCards()}
-
+       
+            <Route path={`${match.url}/new`}>
+                <NewRecipe addNewRecipe={addNewRecipe} myRecipes={myRecipes} updateRecipe={updateRecipe}/>
+            </Route>
           
+            <Route  path={`${match.url}/:cocktailId`}>
+                <CocktailDetails favorites={favorites} addToFavorites={addToFavorites} removeFavorite={removeFavorite} myRecipes={myRecipes}/>
+            </Route>
         </>
     )
 }
