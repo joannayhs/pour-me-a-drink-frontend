@@ -31,9 +31,11 @@ function App() {
       }
 
   function addToFavorites(cocktail){
+    
    if (favorites.length  > 0 && favorites.filter( drink => drink.idDrink === cocktail.idDrink).length > 0){
      return favorites
    }else{
+    delete cocktail['id']
     fetch('http://localhost:4000/favorites', {
        method: "POST",
        headers: {

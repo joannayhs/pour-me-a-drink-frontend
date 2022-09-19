@@ -9,7 +9,6 @@ export default function MyRecipes({favorites, addToFavorites, removeFavorite, my
 
     function createCards(){
         return myRecipes.map( recipe => {
-            const cocktailId = recipe.idDrink
             return <CocktailCard key={recipe.id} cocktail={recipe} addToFavorites={addToFavorites} favorites={favorites} myRecipes={myRecipes} removeFavorite={removeFavorite} />
         })
     }
@@ -25,9 +24,13 @@ export default function MyRecipes({favorites, addToFavorites, removeFavorite, my
                 <Route exact path={`${match.url}/new`}>
                     <NewRecipe addNewRecipe={addNewRecipe} myRecipes={myRecipes} updateRecipe={updateRecipe} />
                 </Route>
+                <Route path={`${match.url}/:cocktailId/edit`}>
+                    <NewRecipe addNewRecipe={addNewRecipe} myRecipes={myRecipes} updateRecipe={updateRecipe} />
+                </Route>
                 <Route path={`${match.url}/:cocktailId`}>
                     <CocktailDetails favorites={favorites} addToFavorites={addToFavorites} removeFavorite={removeFavorite} myRecipes={myRecipes} />
                 </Route>
+                
               
           </Switch>
             

@@ -63,7 +63,7 @@ let match = useRouteMatch()
             <p>{cocktail.strIngredient4}{cocktail.strMeasure4}</p>
             <p>{cocktail.strIngredient5}{cocktail.strMeasure5}</p>
             <p>{cocktail.strInstructions}</p>
-            {myRecipes.filter(drink => drink.idDrink.toString() === params.cocktailId).length > 0 ? <Link to={`new-recipe/${cocktail.idDrink}/edit`}>Edit Recipe</Link> : null}
+            {myRecipes.filter(drink => drink.idDrink.toString() === params.cocktailId).length > 0 ? <Link to={`${cocktail.idDrink}/edit`}>Edit Recipe</Link> : null}
             <button onClick={handleOnClick}>{isFavorite ? "Remove from Favorites" : "Add to Favorites"}</button>
 
           
