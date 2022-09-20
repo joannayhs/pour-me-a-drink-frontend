@@ -29,7 +29,7 @@ function CocktailCard({cocktail, addToFavorites, favorites, removeFavorite, myRe
 
     return (
         <div className="cocktail-card" >
-            <span className="star" onClick={handleClick} style={{ color: isFavorite ? "yellow" : "black" }}>☆</span>
+            <span className="star" onClick={handleClick} style={{ color: isFavorite ? '#87E8B8' : "#F6EFDF" }}>☆</span>
             <img src={cocktail.strDrinkThumb} atl={cocktail.strDrink} width="75%" /><br/>
             {myRecipes.filter( drink => drink.idDrink === cocktailId).length > 0 ? <Link to={`/my-recipes/${cocktailId}`}>{cocktail.strDrink} <br/> </Link> : <Link to={`/cocktails/${cocktailId}`}>{cocktail.strDrink}<br/></Link>}
             {cocktail.strAlcoholic}<br/>

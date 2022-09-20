@@ -5,6 +5,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: black;
+  color: #F6EFDF;
 }
 
 code {
@@ -17,9 +19,10 @@ code {
   display: inline-block;
   margin: 50px;
   padding: 20px;
-  border: 1px solid black;
+  border: 1px solid #5C2F93;
   width: 100px;
   height: 200px;
+  
 }
 
 .cocktails-container {
@@ -37,9 +40,26 @@ code {
   z-index: 2;
   text-align: center;
   background-color:white;
+  background-color: black;
 }
 
+a:link {
+  color: #87E8B8;
+  border: 1px solid #5C2F93;
+  padding: 2px
+}
 
+a:visited {
+  color: #E24A59;
+  border: 1px solid #5C2F93;
+  padding: 2px
+}
+
+a:hover {
+  color: #F6EFDF;
+  border: 1px solid #5C2F93;
+  padding: 2px
+}
 
 .search-bar {
   text-align: center;
