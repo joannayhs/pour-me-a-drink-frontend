@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import {Link, useParams, useHistory, useRouteMatch} from 'react-router-dom'
 
-export default function CocktailDetails({ favorites, addToFavorites, removeFavorite, myRecipes }){
+export default function CocktailDetails({ favorites, addToFavorites, removeFavorite, myRecipes, deleteRecipe }){
 const params = useParams()
 const history = useHistory()
 const [cocktail, setCocktail] = useState('')
@@ -47,6 +47,10 @@ let match = useRouteMatch()
         }
     }
 
+    function handleDelete(){
+        deleteRecipe(cocktail)
+        history.push(`/my-recipes`)
+    }
    
     return(
         
@@ -64,6 +68,7 @@ let match = useRouteMatch()
             <p>{cocktail.strIngredient5}{cocktail.strMeasure5}</p>
             <p>{cocktail.strInstructions}</p>
             {myRecipes.filter(drink => drink.idDrink.toString() === params.cocktailId).length > 0 ? <Link to={`${cocktail.idDrink}/edit`}>Edit Recipe</Link> : null}
+            {myRecipes.filter(drink => drink.idDrink.toString() === params.cocktailId).length > 0 ? <button onClick={handleDelete}>DELETE</button> : null}
             <button onClick={handleOnClick}>{isFavorite ? "Remove from Favorites" : "Add to Favorites"}</button>
 
           

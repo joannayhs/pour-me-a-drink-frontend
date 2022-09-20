@@ -3,7 +3,7 @@ import {useHistory, useParams} from 'react-router-dom'
 import Cocktails from './Cocktails'
 
 
-export default function NewRecipe({addNewRecipe, myRecipes, updateRecipe}){
+export default function NewRecipe({addNewRecipe, myRecipes, updateRecipe, deleteRecipe}){
     const history = useHistory()
     const params = useParams()
     const [formData, setFormData] = useState([])
@@ -31,7 +31,8 @@ export default function NewRecipe({addNewRecipe, myRecipes, updateRecipe}){
             history.push(`/my-recipes/${cocktail.idDrink}`)
         }else{
             addNewRecipe({ ...formData, idDrink: Math.floor(Math.random() * 10001) })
-           
+            setFormData([])
+            history.push(`/my-recipes`)
         }
     }
 
@@ -94,10 +95,15 @@ export default function NewRecipe({addNewRecipe, myRecipes, updateRecipe}){
        return setIngredientFields(fields)
     }
 
+    function handleDelete(){
+        deleteRecipe(cocktail)
+        history.push(`/my-recipes`)
+    }
+
     return (
         <div className="drink-form">
             {console.log(cocktail)}
-            <button onClick={() => history.goBack()}>Close</button>
+            <button onClick={() => history.push(`/my-recipes`)}>Close</button>
          <form onSubmit={handleSubmit}>
             <label>Drink Name</label><br/>
             <input type="text" placeholder="Drink Name" name="strDrink" onChange={handleChange} defaultValue={cocktail ? cocktail.strDrink : ''}/> <br/><br/>
@@ -126,6 +132,8 @@ export default function NewRecipe({addNewRecipe, myRecipes, updateRecipe}){
             <textarea placeholder="Instructions" name="strInstructions" onChange={handleChange} defaultValue={cocktail ? cocktail.strInstructions : ''} /> <br /><br/>
             <button type="submit">Submit</button>
         </form>
+
+        {cocktail ? <button onClick={handleDelete}>DELETE</button> : null}
         </div>
     )
 }

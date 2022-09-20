@@ -100,6 +100,14 @@ function App() {
     return getMyRecipes()
   }
 
+  function deleteRecipe(recipe){
+    fetch(`http://localhost:4000/cocktails/${recipe.id}`,{
+      method: "DELETE"
+    })
+    .then(console.log("Recipe succesfully deleted"))
+    return getMyRecipes()
+  }
+
   return (
     <div className="App">
       <NavBar />
@@ -108,7 +116,7 @@ function App() {
         <Favorites favorites={favorites} addToFavorites={addToFavorites} removeFavorite={removeFavorite} myRecipes={myRecipes}/>
       </Route>
       <Route path={'/my-recipes'}>
-          <MyRecipes favorites={favorites} addToFavorites={addToFavorites} removeFavorite={removeFavorite} myRecipes={myRecipes} addNewRecipe={addNewRecipe} updateRecipe={updateRecipe}/>
+          <MyRecipes favorites={favorites} addToFavorites={addToFavorites} removeFavorite={removeFavorite} myRecipes={myRecipes} addNewRecipe={addNewRecipe} updateRecipe={updateRecipe} deleteRecipe={deleteRecipe}/>
       </Route>
       <Route path={['/cocktails', '/']}>
           <SearchBar setSearchLetter={setSearchLetter}/>
