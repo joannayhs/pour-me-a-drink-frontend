@@ -15,10 +15,13 @@ export default function MyRecipes({favorites, addToFavorites, removeFavorite, my
     
     
     return (
-        <div className="my-recipes">
+       <>
+            <h2>My Recipes</h2><br/>
+           
             <Link to={`${match.url}/new`}>Add Recipe</Link><br/>
-            {createCards()}
-       
+             <div className="my-recipes">
+                {createCards()}
+             </div>
            
           <Switch>
                 <Route exact path={`${match.url}/new`}>
@@ -34,6 +37,6 @@ export default function MyRecipes({favorites, addToFavorites, removeFavorite, my
               
           </Switch>
             
-        </div>
+        </>
     )
 }

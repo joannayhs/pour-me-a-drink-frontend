@@ -111,6 +111,8 @@ export default function NewRecipe({addNewRecipe, myRecipes, updateRecipe, delete
             <select name="strCategory" onChange={handleChange}>
                 <option value="Cocktail">Cocktail</option>
                 <option value="Shot">Shot</option>
+                <option value="Ordinary Drink">Ordinary Drink</option>
+                <option value="Other/Unknown">Other/Unknown</option>
             </select><br/>
             
             <label>Alcoholic?</label>

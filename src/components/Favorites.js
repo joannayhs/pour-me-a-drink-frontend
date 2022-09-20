@@ -14,8 +14,12 @@ export default function Favorites({favorites , addToFavorites, removeFavorite, m
         
 
     return(
-        <div className="favorites">
-            {loadFavorites()}
-        </div>
+        <>
+            <h2>Favorites</h2>
+            <div className="favorites">
+
+                {loadFavorites()}
+            </div>
+        </>
     )
 }

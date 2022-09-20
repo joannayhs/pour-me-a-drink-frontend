@@ -66,6 +66,8 @@ a:hover {
 
 .search-bar {
   text-align: center;
+  padding: 20px;
+  line-height: 1.5;
 }
 
 .navbar {

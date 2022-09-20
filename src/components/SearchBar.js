@@ -15,7 +15,9 @@ function SearchBar({setSearchLetter}){
 
     return (
         <div className="search-bar">
-            {alphabet()}
+            Click a letter to search for drinks.<br/>
+            {alphabet()}<br/>
+            
         </div>
        
     )
