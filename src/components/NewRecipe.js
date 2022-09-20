@@ -102,7 +102,6 @@ export default function NewRecipe({addNewRecipe, myRecipes, updateRecipe, delete
 
     return (
         <div className="drink-form">
-            {console.log(cocktail)}
             <button onClick={() => history.push(`/my-recipes`)}>Close</button>
          <form onSubmit={handleSubmit}>
             <label>Drink Name</label><br/>
