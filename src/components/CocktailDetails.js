@@ -56,18 +56,45 @@ let match = useRouteMatch()
         
         <div className="cocktail-details"> 
         {console.log(myRecipes.find( drink => drink.idDrink.toString() === params.cocktailId))}
-            <button onClick={() => history.goBack()}>Close</button>
-            <p>{cocktail.strDrink}</p>
-            <button onClick={handleOnClick}>{isFavorite ? "Remove from Favorites" : "Add to Favorites"}</button><br/>
-            <p>{cocktail.strAlcoholic}</p>
+            <button onClick={() => history.goBack()} className="close-button">X</button>
+            <h3>{cocktail.strDrink}</h3>
+            {myRecipes.filter(d => d.idDrink.toString() === params.cocktailId).length  > 0 ? null : <button onClick={handleOnClick}>{isFavorite ? "Remove from Favorites" : "Add to Favorites"}</button>}<br/>
+            <p><b>Type of Drink:</b> {cocktail.strAlcoholic}</p>
             <img src={cocktail.strDrinkThumb} position="absolute" width="200px"/>
-            <p>{cocktail.strGlass}</p>
-            <p>{cocktail.strIngredient1}{cocktail.strMeasure1}</p>
-            <p>{cocktail.strIngredient2}{cocktail.strMeasure2}</p>
-            <p>{cocktail.strIngredient3}{cocktail.strMeasure3}</p>
-            <p>{cocktail.strIngredient4}{cocktail.strMeasure4}</p>
-            <p>{cocktail.strIngredient5}{cocktail.strMeasure5}</p>
-            <p>{cocktail.strInstructions}</p>
+            <p><b>Glass type:</b> {cocktail.strGlass}</p>
+
+            <table>
+                <tr>
+                   <th>Measurements</th> 
+                   <th>Ingredients</th>
+                </tr>
+
+                <tr>
+                    <td>{cocktail.strMeasure1}</td>
+                    <td>{cocktail.strIngredient1}</td>
+                </tr>
+                
+                <tr>
+                    <td>{cocktail.strMeasure2}</td>
+                    <td>{cocktail.strIngredient2}</td>
+                </tr>
+
+                <tr>
+                    <td>{cocktail.strMeasure3}</td>
+                    <td>{cocktail.strIngredient3}</td>
+                </tr>
+                <tr>
+                    <td>{cocktail.strMeasure4}</td>
+                    <td>{cocktail.strIngredient4}</td>
+                </tr>
+                <tr>
+                    <td>{cocktail.strMeasure5}</td>
+                    <td>{cocktail.strIngredient5}</td>
+                </tr>
+                <p>{cocktail.strInstructions}</p>
+
+            </table>
+          
             {myRecipes.filter(drink => drink.idDrink.toString() === params.cocktailId).length > 0 ? <Link to={`${cocktail.idDrink}/edit`}>Edit Recipe</Link> : null} <br/>
             {myRecipes.filter(drink => drink.idDrink.toString() === params.cocktailId).length > 0 ? <button onClick={handleDelete}>DELETE</button> : null} <br/>
 

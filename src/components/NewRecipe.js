@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from  'react'
 import {useHistory, useParams} from 'react-router-dom'
-import Cocktails from './Cocktails'
 
 
 export default function NewRecipe({addNewRecipe, myRecipes, updateRecipe, deleteRecipe}){
@@ -14,7 +13,6 @@ export default function NewRecipe({addNewRecipe, myRecipes, updateRecipe, delete
 
     useEffect(() => {
         getCocktail()
-        cocktailIngredientFields()
     }, [cocktail])
     
     function getCocktail(){
@@ -28,7 +26,7 @@ export default function NewRecipe({addNewRecipe, myRecipes, updateRecipe, delete
         if(cocktail){
             updateRecipe(cocktail, formData)
             setFormData([])
-            history.push(`/my-recipes/${cocktail.idDrink}`)
+            history.push(`/my-recipes`)
         }else{
             addNewRecipe({ ...formData, idDrink: Math.floor(Math.random() * 10001) })
             setFormData([])
@@ -52,16 +50,32 @@ export default function NewRecipe({addNewRecipe, myRecipes, updateRecipe, delete
         }
     }
 
-    function  cocktailIngredientFields(){
+    function getCocktailIngredients(){
         if(cocktail){
-            let count = 1
-            while(cocktail[`strIngredient${count}`] != undefined){
-                setIngredientFields([...ingredientFields, {
-                    ingredient: "Ingredient", measurement: "Measurement"
-                }])
-                count++
+            let count=1
+            let ingredients = []
+            let measures = []
+            while(cocktail[`strIngredient${count}`]){
+                ingredients.push(cocktail[`strIngredient${count}`])
+                measures.push(cocktail[`strMeasure${count}`])
+               count++
             }
-            return ingredientFields
+            return (
+                <table>
+                    <th>Ingredients</th>
+                    <th>Measurements</th>
+                    <tr>
+                        {ingredients.map( ing => {
+                            return <td>{ing}</td>
+                        })}
+                    </tr>
+                    <tr>
+                        {measures.map( meas => {
+                            return <td>{meas}</td>
+                        })}
+                    </tr>
+                </table>
+            )
         }
     }
 
@@ -72,8 +86,8 @@ export default function NewRecipe({addNewRecipe, myRecipes, updateRecipe, delete
         let measNum = `strMeasure${index+1}`
         return(
             <div key={`${field.ingredient}${index}`}>
-                <input type="text" placeholder={`${field.ingredient} ${index + 1}`} name={`strIngredient${index + 1}`} onChange={handleChange} key={`${index}${field.ingredient}`} defaultValue={cocktail ? cocktail[ingNum] : ''}/> <br />
-                <input type="text" placeholder={`${field.measurement} ${index + 1}`} name={`strMeasure${index + 1}`} onChange={handleChange} key={`${index}${field.measurement}`} defaultValue={cocktail ? cocktail[measNum] : ''} />
+                <input type="text" placeholder={`${field.ingredient} ${index + 1}`} name={`strIngredient${index + 1}`} onChange={handleChange} key={`${index}${field.ingredient}`} defaultValue=''/> <br />
+                <input type="text" placeholder={`${field.measurement} ${index + 1}`} name={`strMeasure${index + 1}`} onChange={handleChange} key={`${index}${field.measurement}`} defaultValue='' />
                 <button key={index} onClick={e => removeIngredientField(e, index)}>X</button><br/>
             </div>
 
@@ -102,39 +116,40 @@ export default function NewRecipe({addNewRecipe, myRecipes, updateRecipe, delete
 
     return (
         <div className="drink-form">
-            <button onClick={() => history.push(`/my-recipes`)}>Close</button>
-         <form onSubmit={handleSubmit}>
-            <label>Drink Name</label><br/>
-            <input type="text" placeholder="Drink Name" name="strDrink" onChange={handleChange} defaultValue={cocktail ? cocktail.strDrink : ''}/> <br/><br/>
-           
-            <label>Drink Category</label><br />
-            <select name="strCategory" onChange={handleChange}>
-                <option value="Cocktail">Cocktail</option>
-                <option value="Shot">Shot</option>
-                <option value="Ordinary Drink">Ordinary Drink</option>
-                <option value="Other/Unknown">Other/Unknown</option>
-            </select><br/>
-            
-            <label>Alcoholic?</label>
-            {cocktail && cocktail.strAlcoholic === "Alcoholic" ? <input type="checkbox" onChange={handleCheck} checked/> : <input type="checkbox" onChange={handleCheck} />} <br/><br/>
-           
+            {cocktail ? <h2>Edit Recipe</h2> : <h2> New Recipe </h2>}
+            <button onClick={() => history.push(`/my-recipes`)} className="close-button" >X</button>
+            <form onSubmit={handleSubmit}>
+                <label>Drink Name</label><br />
+                <input type="text" placeholder="Drink Name" name="strDrink" onChange={handleChange} defaultValue={cocktail ? cocktail.strDrink : ''} /> <br /><br />
 
-            <label>Type of Glass Needed</label><br/>
-            <input type="text" onChange={handleChange} name="strGlass" placeholder="Type of Glass" defaultValue={cocktail ? cocktail.strGlass : ''} /><br/><br/>
+                <label>Drink Category</label><br />
+                <select name="strCategory" onChange={handleChange}>
+                    {cocktail && cocktail.strCategory === "Cocktail" ? <option value="Cocktail" selected>Cocktail</option> : <option value="Cocktail" >Cocktail</option>}
+                    {cocktail && cocktail.strCategory === "Shot" ? <option value="Shot" selected>Shot</option> : <option value="Shot">Shot</option>}
+                </select><br />
 
-            <label>URL for Image:</label><br />
-            <input type="text" placeholder="image URL" name="strDrinkThumb" onChange={handleChange} defaultValue={cocktail ? cocktail.strDrinkThumb : ''} /> <br/><br/>
-            
-            <label>Ingredients:</label><br/>
-            {mapIngredientFields()}
-            <button onClick={(addIngredientField)}>Add Another Ingredient</button><br /><br/>
+                <label>Alcoholic?</label>
+                {cocktail && cocktail.strAlcoholic === "Alcoholic" ? <input type="checkbox" onChange={handleCheck} checked /> : <input type="checkbox" onChange={handleCheck} />} <br /><br />
 
-            <label>Instructions:</label><br />
-            <textarea placeholder="Instructions" name="strInstructions" onChange={handleChange} defaultValue={cocktail ? cocktail.strInstructions : ''} /> <br /><br/>
-            <button type="submit">Submit</button>
-        </form>
 
-        {cocktail ? <button onClick={handleDelete}>DELETE</button> : null}
+                <label>Type of Glass Needed</label><br />
+                <input type="text" onChange={handleChange} name="strGlass" placeholder="Type of Glass" defaultValue={cocktail ? cocktail.strGlass : ''} /><br /><br />
+
+                <label>URL for Image:</label><br />
+                <input type="text" placeholder="image URL" name="strDrinkThumb" onChange={handleChange} defaultValue={cocktail ? cocktail.strDrinkThumb : ''} /> <br /><br />
+
+                <label>Ingredients:</label><br />
+                {cocktail ? getCocktailIngredients(): null}
+                {mapIngredientFields()}
+                <button onClick={(addIngredientField)}>Add Another Ingredient</button><br /><br />
+
+                <label>Instructions:</label><br />
+                <textarea placeholder="Instructions" name="strInstructions" onChange={handleChange} defaultValue={cocktail ? cocktail.strInstructions : ''} /> <br /><br />
+                <button type="submit">Submit</button>
+            </form>
+
+            {cocktail ? <button onClick={handleDelete}>DELETE</button> : null}
         </div>
+    
     )
 }

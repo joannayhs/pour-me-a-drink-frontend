@@ -5,7 +5,6 @@ import NavBar from './components/NavBar'
 import SearchBar from './components/SearchBar'
 import Favorites from './components/Favorites'
 import MyRecipes from './components/MyRecipes'
-import NewRecipe from './components/NewRecipe'
 
 
 function App() {

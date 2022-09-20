@@ -18,7 +18,7 @@ export default function MyRecipes({favorites, addToFavorites, removeFavorite, my
        <>
             <h2>My Recipes</h2><br/>
            
-            <Link to={`${match.url}/new`}>Add Recipe</Link><br/>
+            <Link to={`${match.url}/new`}>Add Recipe</Link><br/><br/>
              <div className="my-recipes">
                 {createCards()}
              </div>

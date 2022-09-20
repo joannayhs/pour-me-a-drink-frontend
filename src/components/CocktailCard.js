@@ -31,7 +31,7 @@ function CocktailCard({cocktail, addToFavorites, favorites, removeFavorite, myRe
         <div className="cocktail-card" >
             
             <img src={cocktail.strDrinkThumb} atl={cocktail.strDrink} className="drink-image"/><br/>
-            {myRecipes.filter(d => d.idDrink === cocktailId).length > 0 ? <span className="star" onClick={handleClick} style={{ color: isFavorite ? '#87E8B8' : "#F6EFDF" }}>☆</span> : null}
+            {myRecipes.filter(d => d.idDrink === cocktailId).length > 0 ? null : <span className="star" onClick={handleClick} style={{ color: isFavorite ? '#87E8B8' : "#F6EFDF" }}>☆</span>}
             {myRecipes.filter( drink => drink.idDrink === cocktailId).length > 0 ? <Link to={`/my-recipes/${cocktailId}`}>{cocktail.strDrink} <br/> </Link> : <Link to={`/cocktails/${cocktailId}`}>{cocktail.strDrink}<br/></Link>}
             Type of Drink: {cocktail.strAlcoholic}<br/>
             Category: {cocktail.strCategory}<br/>
