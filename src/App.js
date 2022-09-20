@@ -90,7 +90,7 @@ function App() {
   }
 
   function updateRecipe(recipe, formData){
-    fetch(`http://localhost:4000/cocktails/${recipe.idDrink}`,{
+    fetch(`http://localhost:4000/cocktails/${recipe.id}`,{
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",

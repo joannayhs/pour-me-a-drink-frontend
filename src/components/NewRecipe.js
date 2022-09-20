@@ -28,7 +28,7 @@ export default function NewRecipe({addNewRecipe, myRecipes, updateRecipe}){
         if(cocktail){
             updateRecipe(cocktail, formData)
             setFormData([])
-            history.push('/my-recipes')
+            history.push(`/my-recipes/${cocktail.idDrink}`)
         }else{
             addNewRecipe({ ...formData, idDrink: Math.floor(Math.random() * 10001) })
            
