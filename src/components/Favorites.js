@@ -14,8 +14,8 @@ export default function Favorites({favorites , addToFavorites, removeFavorite, m
         
 
     return(
-        <>
+        <div className="favorites">
             {loadFavorites()}
-        </>
+        </div>
     )
 }

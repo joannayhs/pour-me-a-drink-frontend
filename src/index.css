@@ -15,18 +15,21 @@ code {
 }
 
 .cocktail-card {
-  position: static;
   display: inline-block;
-  margin: 50px;
-  padding: 20px;
+  padding: 15px;
   border: 1px solid #5C2F93;
-  width: 100px;
-  height: 200px;
-  
+  text-align: center;
+  line-height: 1.5;
+  font-size: .9em;
 }
 
-.cocktails-container {
+.cocktails-container, .favorites, .my-recipes {
+  margin: 0 auto;
+  max-width: 10000px;
   text-align: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(225px, 1fr));
+  gap: 20px;
 }
 
 .cocktail-details, .drink-form {
@@ -45,22 +48,50 @@ code {
 
 a:link {
   color: #87E8B8;
-  border: 1px solid #5C2F93;
-  padding: 2px
+  padding: 2px;
+  text-decoration: none;
 }
 
 a:visited {
   color: #E24A59;
-  border: 1px solid #5C2F93;
-  padding: 2px
+  padding: 2px;
+  text-decoration: none;
 }
 
 a:hover {
   color: #F6EFDF;
-  border: 1px solid #5C2F93;
-  padding: 2px
+  padding: 2px;
+  text-decoration: underline
 }
 
 .search-bar {
   text-align: center;
+}
+
+.navbar {
+  width: 100%;
+  padding: 10px;
+}
+
+.title {
+  display: inline;
+  position: absolute;
+  top: 10px;
+}
+
+.subtitle {
+  display: inline;
+  position: absolute;
+  top: 50px;
+}
+
+.links{
+  display: inline;
+  position: absolute;
+  top: 100px;
+}
+
+.drink-image {
+  width: 100%;
+  display: block;
 }

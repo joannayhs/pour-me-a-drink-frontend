@@ -15,7 +15,7 @@ export default function MyRecipes({favorites, addToFavorites, removeFavorite, my
     
     
     return (
-        <>
+        <div className="my-recipes">
             <Link to={`${match.url}/new`}>Add Recipe</Link><br/>
             {createCards()}
        
@@ -34,6 +34,6 @@ export default function MyRecipes({favorites, addToFavorites, removeFavorite, my
               
           </Switch>
             
-        </>
+        </div>
     )
 }
