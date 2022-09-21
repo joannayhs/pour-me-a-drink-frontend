@@ -96,7 +96,7 @@ let match = useRouteMatch()
             </table>
           
             {myRecipes.filter(drink => drink.idDrink.toString() === params.cocktailId).length > 0 ? <Link to={`${cocktail.idDrink}/edit`}>Edit Recipe</Link> : null} <br/>
-            {myRecipes.filter(drink => drink.idDrink.toString() === params.cocktailId).length > 0 ? <button onClick={handleDelete}>DELETE</button> : null} <br/>
+            {myRecipes.filter(drink => drink.idDrink.toString() === params.cocktailId).length > 0 ? <button className="delete-button" onClick={handleDelete}>DELETE</button> : null} <br/>
 
           
         </div>

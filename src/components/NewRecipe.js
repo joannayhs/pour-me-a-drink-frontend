@@ -10,6 +10,7 @@ export default function NewRecipe({addNewRecipe, myRecipes, updateRecipe, delete
       {ingredient: "Ingredient", measurement: 'Measurement'}
     ])
     const [cocktail, setCocktail] = useState(undefined)
+ 
 
     useEffect(() => {
         getCocktail()
@@ -50,44 +51,14 @@ export default function NewRecipe({addNewRecipe, myRecipes, updateRecipe, delete
         }
     }
 
-    function getCocktailIngredients(){
-        if(cocktail){
-            let count=1
-            let ingredients = []
-            let measures = []
-            while(cocktail[`strIngredient${count}`]){
-                ingredients.push(cocktail[`strIngredient${count}`])
-                measures.push(cocktail[`strMeasure${count}`])
-               count++
-            }
-            return (
-                <table>
-                    <th>Ingredients</th>
-                    <th>Measurements</th>
-                    <tr>
-                        {ingredients.map( ing => {
-                            return <td>{ing}</td>
-                        })}
-                    </tr>
-                    <tr>
-                        {measures.map( meas => {
-                            return <td>{meas}</td>
-                        })}
-                    </tr>
-                </table>
-            )
-        }
-    }
 
     function mapIngredientFields(){
 
        return ingredientFields.map(( field, index ) => {
-        let ingNum = `strIngredient${index +1}`
-        let measNum = `strMeasure${index+1}`
         return(
             <div key={`${field.ingredient}${index}`}>
-                <input type="text" placeholder={`${field.ingredient} ${index + 1}`} name={`strIngredient${index + 1}`} onChange={handleChange} key={`${index}${field.ingredient}`} defaultValue=''/> <br />
-                <input type="text" placeholder={`${field.measurement} ${index + 1}`} name={`strMeasure${index + 1}`} onChange={handleChange} key={`${index}${field.measurement}`} defaultValue='' />
+                <input type="text" placeholder={`${field.ingredient} ${index + 1}`} name={`strIngredient${index + 1}`} onChange={handleChange} key={`${index}${field.ingredient}`} defaultValue={''}/> <br />
+                <input type="text" placeholder={`${field.measurement} ${index + 1}`} name={`strMeasure${index + 1}`} onChange={handleChange} key={`${index}${field.measurement}`} defaultValue={''} />
                 <button key={index} onClick={e => removeIngredientField(e, index)}>X</button><br/>
             </div>
 
@@ -139,7 +110,6 @@ export default function NewRecipe({addNewRecipe, myRecipes, updateRecipe, delete
                 <input type="text" placeholder="image URL" name="strDrinkThumb" onChange={handleChange} defaultValue={cocktail ? cocktail.strDrinkThumb : ''} /> <br /><br />
 
                 <label>Ingredients:</label><br />
-                {cocktail ? getCocktailIngredients(): null}
                 {mapIngredientFields()}
                 <button onClick={(addIngredientField)}>Add Another Ingredient</button><br /><br />
 
@@ -148,7 +118,7 @@ export default function NewRecipe({addNewRecipe, myRecipes, updateRecipe, delete
                 <button type="submit">Submit</button>
             </form>
 
-            {cocktail ? <button onClick={handleDelete}>DELETE</button> : null}
+            {cocktail ? <button className="delete-button" onClick={handleDelete}>DELETE</button> : null}
         </div>
     
     )
