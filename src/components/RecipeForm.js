@@ -83,7 +83,6 @@ export default function RecipeForm({addNewRecipe, myRecipes, updateRecipe, delet
             })
         }else{
             return ingredientFields.map((field, index) => {
-                console.log(field.ingredient, index)
                 console.log(formData)
                 return (
                     <div key={`${field.ingredient}${index}`}>
@@ -117,14 +116,16 @@ export default function RecipeForm({addNewRecipe, myRecipes, updateRecipe, delet
             e.preventDefault()
             let fields = [...ingredientFields]
             fields.splice(index, 1)
-            setFormData({...formData, 
-                [`strIngredient${index+1}`]: '',
-                [`strMeasure${index+1}`]: ''
-            })
-            setIngredientFields(fields)
+            let data = {...formData}
+            for(let i = 0; i < fields.length; i++){
+                data[`strIngredient${i+1}`] = fields[i].ingredient
+                data[`strMeasure${i+1}`] = fields[i].measurement
+            }
+            setFormData(data)
+            return setIngredientFields(fields)
         }
-        
     }
+
 
     function handleDelete(){
         deleteRecipe(cocktail)
