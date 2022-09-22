@@ -8,6 +8,8 @@ export default function Favorites({favorites , addToFavorites, removeFavorite, m
             return favorites.map(f => {
                 return <CocktailCard key={f.idDrink} cocktail={f} favorites={favorites} addToFavorites={addToFavorites} removeFavorite={removeFavorite} myRecipes={myRecipes} />
             })  
+        }else{
+            return <h3>Browse recipes to start finding new favorites!</h3>
         }
        
     }
@@ -17,7 +19,6 @@ export default function Favorites({favorites , addToFavorites, removeFavorite, m
         <>
             <h2>Favorites</h2>
             <div className="favorites">
-
                 {loadFavorites()}
             </div>
         </>

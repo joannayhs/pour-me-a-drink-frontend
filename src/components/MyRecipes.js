@@ -8,16 +8,20 @@ export default function MyRecipes({favorites, addToFavorites, removeFavorite, my
     const match = useRouteMatch()
 
     function createCards(){
-        return myRecipes.map( recipe => {
-            return <CocktailCard key={recipe.id} cocktail={recipe} addToFavorites={addToFavorites} favorites={favorites} myRecipes={myRecipes} removeFavorite={removeFavorite} deleteRecipe={deleteRecipe} />
-        })
+        if(myRecipes.length > 0){
+            return myRecipes.map(recipe => {
+                return <CocktailCard key={recipe.id} cocktail={recipe} addToFavorites={addToFavorites} favorites={favorites} myRecipes={myRecipes} removeFavorite={removeFavorite} deleteRecipe={deleteRecipe} />
+            })
+        }else{
+            return <h3>Begin adding new recipes to see them here.</h3>
+        }
+        
     }
     
     
     return (
        <>
             <h2>My Recipes</h2><br/>
-           
             <Link to={`${match.url}/new`}>Add Recipe</Link><br/><br/>
              <div className="my-recipes">
                 {createCards()}

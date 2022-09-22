@@ -1,3 +1,31 @@
+#Pour Me A Drink App
+
+This Single Page App is the final React project for Flatiron School. It was created to be a place where people could browse different drink recipes and upload some of their own. It uses the free Cocktail Database API (https://www.thecocktaildb.com/api.php) to populate the lists of cocktails on the homepage.
+
+##Installation
+
+Fork and clone this repository to your local drive. Then inside the directory run
+```
+npm start
+```
+You  will need to fork and clone the repository located at (https://github.com/joannayhs/pour-me-a-drink-backend). Then from inside that directory run 
+```
+npm start
+```
+
+##Usage
+Once the frontend and backend are up and running, you can begin using the app. 
+
+To search the database, click on the letters at the top of the homepage. That populates about 20 cocktails at a time. 
+
+Drinks can be saved to the "Favorites" page by clicking either on star icon or by opening the details for that cocktail and hitting the "Add to Favorites" button. They can be removed from favorites in the same  way. 
+
+Users can also add their own drink recipes under the "My Recipes" page. This page will show all the recipes that a user has added and has a link to add recipes. When a user clicks on that link, the Recipe form appears and users can input the necessary information. Users can then save and it will appear in their list of recipes. Users can then open the details of their own recipe and click the "Edit Recipe" link to make changes or the Delete button to remove the recipe entirely. Users can also delete recipes from the edit form. 
+
+
+##Contributing
+
+Pull requests are welcome. For major changes, please open an issue first to discuss. 
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
