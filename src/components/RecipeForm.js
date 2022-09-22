@@ -10,10 +10,12 @@ export default function RecipeForm({addNewRecipe, myRecipes, updateRecipe, delet
       {ingredient: "", measurement: ''}
     ])
     const [cocktail, setCocktail] = useState('')
+    const [isChecked, setIsChecked] = useState(false)
 
     useEffect(() => {
         getCocktail()
         addCocktailIngredients()
+        checkForChecked()
     }, [cocktail])
     
     function getCocktail(){
@@ -35,6 +37,12 @@ export default function RecipeForm({addNewRecipe, myRecipes, updateRecipe, delet
             setIngredientFields([...allFields, {
                 ingredient: '', measurement: ''
             }])
+        }
+    }
+
+    function checkForChecked(){
+        if(cocktail && cocktail.strAlcoholic === "Alcoholic"){
+            setIsChecked(true)
         }
     }
 
@@ -61,10 +69,12 @@ export default function RecipeForm({addNewRecipe, myRecipes, updateRecipe, delet
             setFormData({...formData, 
                 "strAlcoholic": "Alcoholic"
             })
+            setIsChecked(!isChecked)
         }else{
             setFormData({...formData,
                 "strAlcoholic": "Non-Alcoholic"
             })
+            setIsChecked(!isChecked)
         }
     }
 
@@ -147,7 +157,7 @@ export default function RecipeForm({addNewRecipe, myRecipes, updateRecipe, delet
                 </select><br />
 
                 <label>Alcoholic?</label>
-                {cocktail && cocktail.strAlcoholic === "Alcoholic" ? <input type="checkbox" onChange={handleCheck} checked /> : <input type="checkbox" onChange={handleCheck} />} <br /><br />
+                <input type="checkbox" onChange={handleCheck} checked={isChecked} /> <br /><br />
 
 
                 <label>Type of Glass Needed</label><br />
