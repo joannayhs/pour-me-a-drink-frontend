@@ -1,6 +1,6 @@
 import React from 'react'
 import CocktailCard from './CocktailCard'
-import {Route, useRouteMatch} from 'react-router-dom'
+import {Route} from 'react-router-dom'
 import CocktailDetails from './CocktailDetails'
 
 function Cocktails({cocktails, favorites, addToFavorites, myRecipes, removeFavorite}){

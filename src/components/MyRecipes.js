@@ -1,7 +1,7 @@
 import React from 'react'
 import {Link, useRouteMatch, Route, Switch} from 'react-router-dom'
 import CocktailCard from './CocktailCard'
-import NewRecipe from './NewRecipe'
+import RecipeForm from './RecipeForm'
 import CocktailDetails from './CocktailDetails'
 
 export default function MyRecipes({favorites, addToFavorites, removeFavorite, myRecipes, addNewRecipe, updateRecipe, deleteRecipe}){ 
@@ -25,10 +25,10 @@ export default function MyRecipes({favorites, addToFavorites, removeFavorite, my
            
           <Switch>
                 <Route exact path={`${match.url}/new`}>
-                    <NewRecipe addNewRecipe={addNewRecipe} myRecipes={myRecipes} updateRecipe={updateRecipe} deleteRecipe={deleteRecipe}/>
+                    <RecipeForm addNewRecipe={addNewRecipe} myRecipes={myRecipes} updateRecipe={updateRecipe} deleteRecipe={deleteRecipe}/>
                 </Route>
                 <Route path={`${match.url}/:cocktailId/edit`}>
-                    <NewRecipe addNewRecipe={addNewRecipe} myRecipes={myRecipes} updateRecipe={updateRecipe} deleteRecipe={deleteRecipe}/>
+                    <RecipeForm addNewRecipe={addNewRecipe} myRecipes={myRecipes} updateRecipe={updateRecipe} deleteRecipe={deleteRecipe}/>
                 </Route>
                 <Route path={`${match.url}/:cocktailId`}>
                     <CocktailDetails favorites={favorites} addToFavorites={addToFavorites} removeFavorite={removeFavorite} myRecipes={myRecipes} deleteRecipe={deleteRecipe}/>

@@ -2,18 +2,18 @@ import React, {useEffect, useState} from  'react'
 import {useHistory, useParams} from 'react-router-dom'
 
 
-export default function NewRecipe({addNewRecipe, myRecipes, updateRecipe, deleteRecipe}){
+export default function RecipeForm({addNewRecipe, myRecipes, updateRecipe, deleteRecipe}){
     const history = useHistory()
     const params = useParams()
     const [formData, setFormData] = useState([])
     const [ingredientFields, setIngredientFields] = useState([
-      {ingredient: "Ingredient", measurement: 'Measurement'}
+      {ingredient: "", measurement: ''}
     ])
-    const [cocktail, setCocktail] = useState(undefined)
- 
+    const [cocktail, setCocktail] = useState('')
 
     useEffect(() => {
         getCocktail()
+        addCocktailIngredients()
     }, [cocktail])
     
     function getCocktail(){
@@ -21,6 +21,23 @@ export default function NewRecipe({addNewRecipe, myRecipes, updateRecipe, delete
            return setCocktail(myRecipes.find( drink => drink.idDrink.toString() === params.cocktailId))
         }
     }
+
+    function addCocktailIngredients(){
+        if(cocktail){
+            let count = 1
+            let allFields = []
+            while(cocktail[`strIngredient${count}`]){
+                allFields.push({
+                    ingredient: cocktail[`strIngredient${count}`], measurement: cocktail[`strMeasure${count}`]
+                })
+                count++
+            }
+            setIngredientFields([...allFields, {
+                ingredient: '', measurement: ''
+            }])
+        }
+    }
+
 
     function handleSubmit(e){
         e.preventDefault()
@@ -53,31 +70,60 @@ export default function NewRecipe({addNewRecipe, myRecipes, updateRecipe, delete
 
 
     function mapIngredientFields(){
+        if(!cocktail){
+            return ingredientFields.map((field, index) => {
+                return (
+                    <div key={`${field.ingredient}${index}`}>
+                        <input type="text" placeholder={`Ingredient ${index + 1}`} name={`strIngredient${index+1}`} onChange={handleChange} key={`${index}Ingredient`} defaultValue={''} />
+                        <input type="text" placeholder={`Measurement ${index + 1}`} name={`strMeasure${index+1}`} onChange={handleChange} key={`${index}Measurement`} defaultValue={''} />
+                        <button key={index} onClick={e => removeIngredientField(e, index)}>X</button><br />
+                    </div>
 
-       return ingredientFields.map(( field, index ) => {
-        return(
-            <div key={`${field.ingredient}${index}`}>
-                <input type="text" placeholder={`${field.ingredient} ${index + 1}`} name={`strIngredient${index + 1}`} onChange={handleChange} key={`${index}${field.ingredient}`} defaultValue={''}/> <br />
-                <input type="text" placeholder={`${field.measurement} ${index + 1}`} name={`strMeasure${index + 1}`} onChange={handleChange} key={`${index}${field.measurement}`} defaultValue={''} />
-                <button key={index} onClick={e => removeIngredientField(e, index)}>X</button><br/>
-            </div>
+                )
+            })
+        }else{
+            return ingredientFields.map((field, index) => {
+                console.log(field.ingredient, index)
+                console.log(formData)
+                return (
+                    <div key={`${field.ingredient}${index}`}>
+                        <input type="text"  name={`strIngredient${index+1}`} onChange={handleChange} key={`${index}Ingredient`} defaultValue={field.ingredient ? field.ingredient : ""} />
+                        <input type="text"  name={`strMeasure${index+1}`} onChange={handleChange} key={`${index}Measurement`} defaultValue={field.measurement ? field.measurement : ""} />
+                        <button key={index} onClick={e => removeIngredientField(e, index)}>X</button><br />
+                    </div>
 
-       ) 
-        })
+                )
+            })
+        }
+
+          
     }
+       
 
     function addIngredientField(e){
         e.preventDefault()
         setIngredientFields([...ingredientFields, {
-            ingredient: "Ingredient", measurement: "Measurement"
+            ingredient: "", measurement: ""
         }])
     }
 
     function removeIngredientField(e, index){
-        e.preventDefault()
-       let fields = [...ingredientFields]
-       fields.splice(index, 1) 
-       return setIngredientFields(fields)
+        if(!cocktail){
+            e.preventDefault()
+            let fields = [...ingredientFields]
+            fields.splice(index, 1)
+            return setIngredientFields(fields)
+        }else{
+            e.preventDefault()
+            let fields = [...ingredientFields]
+            fields.splice(index, 1)
+            setFormData({...formData, 
+                [`strIngredient${index+1}`]: '',
+                [`strMeasure${index+1}`]: ''
+            })
+            setIngredientFields(fields)
+        }
+        
     }
 
     function handleDelete(){
@@ -110,6 +156,7 @@ export default function NewRecipe({addNewRecipe, myRecipes, updateRecipe, delete
                 <input type="text" placeholder="image URL" name="strDrinkThumb" onChange={handleChange} defaultValue={cocktail ? cocktail.strDrinkThumb : ''} /> <br /><br />
 
                 <label>Ingredients:</label><br />
+                {/* {cocktail? mapCocktailIngredientFields() : null} */}
                 {mapIngredientFields()}
                 <button onClick={(addIngredientField)}>Add Another Ingredient</button><br /><br />
 
